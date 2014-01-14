@@ -1,0 +1,24 @@
+%sensitivity analysis with morris method 
+% (as decribed in : "An effective screening design for sensitivity analysis of large models"
+% Campolongo,Cariboni and Saltelli, 
+% Environmental Modelling & Software 22 (2007) 1509e1518 ) 
+
+
+gsa_morris(
+[k1,k4,k6],
+[(0,1000),(0,1000),(0,1000)],
+F([Cdc2-Cyclin~{p1}]>u),
+[u],
+[0.3],
+150,10,500).
+
+% %local sensitivity analysis
+% gsa_sobol(
+% [k1,k4,k6],
+% [(0,1000),(0,1000),(0,1000)],
+% F([Cdc2-Cyclin~{p1}]>u),
+% [u],
+% [0.3],
+% 150,
+% 10
+% ).

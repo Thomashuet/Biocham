@@ -1,0 +1,19 @@
+% change_directory(kinetics).
+
+load_biocham('circ.bc').
+
+numerical_simulation(80).
+
+plot.
+
+keep_plot.
+
+%sleep(1).
+
+load_biocham('circa_hong2.bc').
+
+numerical_simulation(100).
+
+plot.
+
+%sleep(2).

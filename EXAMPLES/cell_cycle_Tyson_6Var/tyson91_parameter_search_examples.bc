@@ -1,0 +1,12 @@
+
+cmaes_params(100,0.01,0.1).
+
+search_parameters_cmaes(
+[k4,k6],
+[(0,1000),(0,1000)],
+F([Cdc2-Cyclin~{p1}]>u),
+[u],
+[0.3],
+150).
+
+

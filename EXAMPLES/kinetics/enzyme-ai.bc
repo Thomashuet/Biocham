@@ -1,0 +1,17 @@
+%%%% Enzymes with allosteric inhibition
+
+
+(10*[ENZ]*[SUB],10*[ENSUB]) for ENZ + SUB <=> ENSUB.
+(5*[ENSUB]*[INH],5*[ENSUBIN]) for ENSUB + INH <=> ENSUBIN.
+(10*[ENSUBIN],10*[ENZIN]*[SUB]) for ENSUBIN <=> ENZIN + SUB.
+(5*[ENZ]*[INH],5*[ENZIN]) for ENZ + INH <=> ENZIN.
+1*[ENSUB] for ENSUB => ENZ + P.
+
+present(ENZ,0.5).
+present(SUB,0.5).
+present(INH,0.4).
+
+absent(ENSUB).
+absent(ENSUBIN).
+absent(ENZIN).
+absent(P).

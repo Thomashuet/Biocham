@@ -1,0 +1,9 @@
+pdflatex manual
+bibtex manual
+pdflatex manual
+pdflatex manual
+makeindex -c manual
+pdflatex manual
+pdflatex manual
+
+hevea -fix manual

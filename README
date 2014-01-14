@@ -1,0 +1,42 @@
+# BIOCHAM system http://contraintes.inria.fr/BIOCHAM/
+# Copyright 2003-2010, EPI Contraintes, INRIA Paris-Rocquencourt, France
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+# README file
+
+The Biochemical Abstract Machine (BioCham) is a modelling environment for systems biology, with some unique features for inferring unknown model parameters from temporal logic constraints.
+
+BioCham is mainly composed of :
+
+    * a rule-based language for modeling biochemical systems (compatible with SBML)
+    * several simulators (boolean, differential, stochastic),
+    * a temporal logic based language to formalize the temporal properties of a biological system,
+    * several features for developing/correcting/completing/coupling models, including the inference of kinetic parameters in high dimension from temporal logic constraints.
+
+BioCham is a free software protected by the GNU General Public License GPL version 2. This is an Open Source license that allows free usage of this software.
+
+Feedback on the use of BioCham in applications, research or teaching are particularly welcomed
+on the developpers mailing list: biocham@inria.fr
+
+To install BIOCHAM, read INSTALL
+
+The documentation is in the DOC directory
+
+
+
+
+
+

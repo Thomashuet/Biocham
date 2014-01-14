@@ -1,0 +1,13 @@
+% The equilibrium constant for the first reaction is 40, and for the second is
+% 0.333.  For short times, Y will be the major product. For long times, X will
+% be the major product.  In other words, Y is under kinetic control and X is
+% under thermodynamic control. 
+
+(0.02*[RA],0.0005*[X]) for RA <=> X.
+
+(0.5*[RA],1.5*[Y]) for RA <=> Y.
+
+present(RA,1).
+
+absent(X).
+absent(Y).

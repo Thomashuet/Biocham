@@ -1,0 +1,49 @@
+
+%http://www.cellerator.org/notebooks/Tyson6.html
+%From 
+%Cell Cycle Model; Tyson (1991, 6 variables)
+
+%Citation
+%Tyson JJ, (1991) . Modeling the cell division cycle: cdc2 and cyclin
+% interactions. PNAS, 88: 7328-7332.
+% http://www.pnas.org/cgi/content/abstract/88/16/7328
+
+%Description
+%A model of the cell cycle based on the interactions between cdc2 and cyclin.
+
+present(Cdc2,1).
+present(Cdc2~{p1},0).
+present(Cyclin,0).
+present(Cdc2-Cyclin~{p1,p2},0).
+present(Cdc2-Cyclin~{p1},0).
+present(Cyclin~{p1},0).
+
+%macro(CT,[Cdc2-Cyclin~{p1,p2}]+[Cdc2-Cyclin~{p1}]+[Cdc2~{p1}]+[Cdc2]).
+
+k1				for _=>Cyclin.
+k2*[Cyclin]			for Cyclin=>_.
+
+k3*[Cyclin]*[Cdc2~{p1}]	for Cyclin+Cdc2~{p1} => Cdc2-Cyclin~{p1,p2}.
+
+k4p*[Cdc2-Cyclin~{p1,p2}] 					for Cdc2-Cyclin~{p1,p2} => Cdc2-Cyclin~{p1}.
+k4*([Cdc2-Cyclin~{p1}])^2*[Cdc2-Cyclin~{p1,p2}] 	for Cdc2-Cyclin~{p1,p2} =[Cdc2-Cyclin~{p1}]=> Cdc2-Cyclin~{p1}.
+k5*[Cdc2-Cyclin~{p1}]						for Cdc2-Cyclin~{p1} => Cdc2-Cyclin~{p1,p2}.
+
+k6*[Cdc2-Cyclin~{p1}]	for Cdc2-Cyclin~{p1} => Cyclin~{p1}+Cdc2.
+k7*[Cyclin~{p1}]		for Cyclin~{p1} =>_.
+
+k8*[Cdc2]				for Cdc2 => Cdc2~{p1}.
+k9*[Cdc2~{p1}]			for Cdc2~{p1} => Cdc2.
+
+macro(YT,[Cyclin]+[Cyclin~{p1}]+[Cdc2-Cyclin~{p1,p2}]+[Cdc2-Cyclin~{p1}]).  
+
+parameter(k1,0.015).
+parameter(k2,0).
+parameter(k3,200).
+parameter(k4p,0.018).
+parameter(k4,180).
+parameter(k5,0).
+parameter(k6,1).
+parameter(k7,0.6).
+parameter(k8,100).
+parameter(k9,100).

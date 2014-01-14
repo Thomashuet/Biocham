@@ -1,0 +1,7 @@
+show_macros.
+
+numerical_simulation(1200).
+
+plot.
+
+check_ltl(F(Time>400 & p53tot > 0.8) & oscil(p53,2)).

@@ -1,0 +1,19 @@
+% change_directory(kinetics).
+
+load_biocham('order1.bc').
+
+numerical_simulation(10).
+
+plot.
+
+keep_plot.
+
+%sleep(1).
+
+load_biocham('order2.bc').
+
+numerical_simulation(200).
+
+plot.
+
+%sleep(2).

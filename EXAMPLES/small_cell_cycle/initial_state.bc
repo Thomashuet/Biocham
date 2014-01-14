@@ -1,0 +1,21 @@
+
+%clear_initial_state.
+
+absent({
+cdk1~{Thr161},
+cdk1-cycB,
+cdk1~{Thr161}-cycB,
+cdk1~{Thr161,Thr14}-cycB,
+cdk1~{Thr161,Tyr15}-cycB,
+cdk1~{Thr14}-cycB,
+cdk1~{Tyr15}-cycB,
+cdk1~{Thr161,Tyr15,Thr14}-cycB,
+cdk1~{Tyr15,Thr14}-cycB,
+
+cycH-cdk7,
+cdc25C~{Nterminaldomain}
+       }).
+
+
+present({cdk1,cycB,cycH, cdk7, Myt1,  Wee1, cdc25C}).
+

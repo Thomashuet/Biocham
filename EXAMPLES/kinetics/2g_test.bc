@@ -1,0 +1,17 @@
+numerical_method.
+
+numerical_simulation(400).
+
+plot.
+
+%sleep(3).
+
+keep_plot.
+
+numerical_method(rk).
+
+numerical_simulation(400).
+
+plot.
+
+%sleep(3).

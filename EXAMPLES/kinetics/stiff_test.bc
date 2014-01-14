@@ -1,0 +1,17 @@
+numerical_simulation(1).
+
+plot.
+
+%sleep(3).
+
+hide_molecules(S).
+
+keep_plot.
+
+step_doubling(0.000001).       
+
+numerical_simulation(0.000001).
+
+plot.
+
+%sleep(3).

@@ -1,0 +1,16 @@
+% Lotka-Volterra Autocatalysis
+
+0.3*[RA]*[RM] for _ => RM.
+
+0.3*[RA]*[RM] for RA + RM => 2*RA.
+
+0.3*[RA]*[RB] for RA + RB => 2*RB.
+
+0.15*[RB] for RB => RP.
+
+present(RA,0.5).
+present(RB,0.5).
+present(RM,2).
+
+absent(RP).
+

@@ -1,0 +1,535 @@
+TODO list for release 3.3 (update October 4 2011)
+-------------------------
+
+FF-13
+When you read a model with directives about the numerical method 
+no step doubling etc. (e.g. ball.bc) it would be nice if the 
+ODE simulator interface was initialized by default as specified 
+in the file
+
+FF-12a
+In the menu Help the folder documentation should appear opened.
+FF12-b
+The pdf of only the manual is ugly :-(
+perhaps a problem of fonts I will check with Sylvain
+--> open manual.html instead of manual.pdf and we will have the links
+
+
+FF-11
+In the interface for the events of the models
+replace "Kinetics" by "Values" (or "Expressions")
+
+DJ IN PROGRESS(04.10.2011):
+DONE-->1. F10a/b
+DONE-->2. F09
+DONE-->3. F08
+DONE-->4. F07
+
+DONE--> simulation progress window?
+IN PROGRESS--> better rge?
+
+IN PROGRESS-->5. biocham release documentation(linux/windows/mac)
+IN PROGRESS-->6. gui testing documentation
+7. fest tests 
+
+
+
+
+FF-10a
+In the graphical editor (which is quite nice !)
+save layout should indicate the dot extension
+and should take the dir of the model bc file as default.
+-->IT WAS THE CASE. Except for the dot extension.
+-->DONE!
+
+FF-10b
+However open layout is not implemented right ?
+(for using a dot layout to draw the model in the graphical editor)
+so currently the saved layout cannot be reused right ?
+-->DONE.
+
+FF-09
+In the menu of abstractions
+put the "draw" buttons first
+-->DONE!
+
+
+FF-08
+seen on EXAMPLES/events/ball.bc
+the parameter r is not shown but the menu says "deselect it" instead of "select it"
+the CTRL CLICK does not work correctly 
+and finishes by
+ java.lang.NullPointerException
+ at fr.inria.contraintes.biocham.BiochamLoggerThread.run(BiochamLoggerThread.java:260)
+-->DONE.
+
+FF-07
+ODE simulation should have a widget for changing 
+step_doubling whatever the simulation method is
+plus 
+no_step_doubling and step_size only for Runge-Kutta method
+-->DONE!
+
+
+FF-6
+in gui/makefile.am some dependencies are missing
+for instance gui/dialogs/*java gui/modelData/*java etc.
+-->DONE.
+
+
+DJ IN PROGRESS(12.09.2011):
+DONE-->1. default time horizon for cmaes parameter search and any command
+should be the same as for simulation
+DONE-->2. mode debug, delete debug messages on the calling console
+DONE-->3. tutorial
+DONE-->4. finish code documentation
+5. release documentation(linux/windows/mac)
+6. testing documentation
+7. fest tests 
+
+
+FF-5 when quitting: class java.lang.NullPointerException,null
+-->DONE.
+
+FF-4
+The default time unit for stochastic simulation should be the same as for ODE simulation.
+--->VERY SLOW, CAN LAST FOR VERY LONG TIME, it blocks the user work with biocham until the simulation finishes.
+--> the default value should be *20* as in the manual (for all simulations)
+
+FF-3
+The result of a simulation needs to click to get it fitted to screen
+-->DONE.
+
+FF-2
+The window BiochamWarnings should contain only warnings and errors
+or be empty (do not write BIOCHAM)
+-->DONE.
+
+FF-1
+time_events have been added to events
+they are exported in Biocham by printing 
+"event(C,PL,VL)" or time_event(T,C,PL,VL) not "add_event(C,PL,VL)"
+for communication with the [GUI] they are written add_time_event(T,C,PL,VL)
+-->DONE.
+
+DJ IN PROGRESS(26.05.2011):
+IN PROGRESS->1.mode debug
+DONE->2.conection eclipse-svn
+DONE->3.documentation dans svn
+DONE->4.simulators panel
+DONE->5.abstraction panel
+DONE->6.Simulators->Simulations
+DONE->7.Command-lien ctrl+P, tabs and focus at the end of output
+DONE->8.Input to bioham to be wrtitten at the cmdline output
+DONE->9.When a plot is generated to open it in the corresponding view
+DONE->10.Order of simulators(ode-stoch-bool)
+DONE->11. separate each simulator
+DONE->12. Popups for all the menu!
+
+FF-1
+For the menus both in the left window and in the top bar
+use the following categories as in the manual:
+- model
+- simulators
+- boolean temporal properties
+- numerical temporal properties
+- abstractions
+-->DONE!
+
+FF0
+generate documentation using javadoc
+-->DONE AUTOMATICALLY BY ECLIPSE!
+add javadoc comments in your code to improve that documentation
+-->IN PROGRESS!
+
+
+FF1  
+Two commands have been renamed
+solve--> domains 
+list_kinetics --> list_ODE
+update your version with the svn version
+-->DONE!
+
+
+FF2 
+the default time horizon for cmaes parameter search and any command
+should be the same as for simulation
+(currently it's 20 and 200)
+-->IN PROGRESS!
+
+
+FF3
+one button for interrupting a command running would be welcomed
+-->DONE!
+
+FF4
+the biocham warnings are not visible in the warning window (in my windows version)
+they should
+the warning window should keep trace of all warnings and errors messages
+-->DONE! but, to check again, as it appears normally when I test it.
+
+FF5
+the command line window is still not working well with the cursor
+the output has been improved but is still not perfect
+can't you see it yourself ?
+The best would be to have a single command line scrollable window
+where you type commands and see the answers
+-->DONE!
+
+FF6 
+if it is easy it would be nice that all the commands executed from the gui 
+be printed in the command line window
+the user will know that exactly what does a gui button
+-->DONE!
+
+FF7
+I think it's not a good idea to automatically close a popup window like rule
+when you return to the main rule menu
+the popup windows should be closed by the user
+If it is for a problem of consistency with the modifications 
+it would be better to refresh the popup window rather than close it
+-->DONE!
+
+FF8
+the popup windows should get the focus when click 
+(FF8b simple click should be enough rather than double click)
+does not work for macro popup when rule popup opened
+-->DONE!
+
+FF9
+delete debug messages on the calling console
+-->IN PROGRESS!At the end!!!!!
+
+FF10
+Add to svn the generated documentation of the gui code in Java
+-->DONE!
+
+TODO list for release 3.1
+-------------------------
+
+FF-1: bug graphical editor
+C+(E+S) => C+(E+P) is not parsed correctly
+creates (E S) and P) nodes
+-->DONE
+
+FF0: graphical editor
+- it is very difficult to change the orientation of the rule boxes
+- it is sometimes difficult to drag the right element
+-->OK, I HOPE?
+
+FF1: menu Rules
+- should contain a button to call the graphical rule editor
+-->TD
+
+- "add" button should be "add rule" since only one rule is accepted
+or entering several rules should be accepted
+(the syntax error is unclear in that case)
+-->IT IS POSSIBLE TO ADD MULTIPLE RULES
+
+- a final . should be accepted after entering a rule
+-->IT IS
+
+- synthesis degradation make no sense ?
+-->IT MAKES
+
+FF2: the Help should give the version
+that is defined in the environment using automake
+-->Normally its to us to add when the executable are being made...
+
+FF3: command line
+the cursor should be on the new line after executiing the command
+-->?
+
+FF4: the manual in html and pdf should be available
+and opened with the user's browser not with the Java pdf viewer
+since it does not support hyperref
+-->TD!
+
+
+
+TODO list for the GUI release 3.0
+---------------------------------
+
+FF7:
+that's all folks !
+
+
+FF6:
+
+sorry! needed to rename again 
+check_ltl --> check_ltl_spec
+and keep check_ltl for an LTL formula given as argument
+--->DONE!!!
+
+similarly:
+check --> check_ctl and check_spec
+check_why without argument -> check_why_spec
+check_all --> check_all_spec
+--->DONE!!!
+
+FF5:
+
+Replace "Specification" button by "Boolean temporal properties" and "Numerical temporal properties"
+as in the manual 
+--->DONE!!!
+
+CTL specification window: 
+should contain only the specification add delete
+--->DONE!!!
+
+
+CTL model checking window: 
+should be called as in the manual "Checking CTL properties"
+- nusmv(ctl) and nusmv_why(ctl) are renamed check(ctl) and check_why(ctl)
+  they do not refer to the specification
+  they should appear separately from the other commands
+  that refer to the specification
+- there should be a button for genCTL (listing CTL properties)
+  different from add_genCTL (adding these CTL properties)
+- save as and export as do not seem to work (it should be in .bc file only)
+-reduce model list the rules but there seems to be nothing to copy them
+ (selection works but no right click to copy)
+- good focus when editing CTL formulae but 
+  for & the focus should be after & not before
+--->DONE!!!
+
+
+LTL specification: follow the structure of the manual (revised)
+to distinguish between:
+- LTL(R) specification window (only add and delete)
+- Checking LTL(R) properties window (check_ltl/old trace_checck, solve/old trace_analyze, landscape, robustness)
+- Searching parameters
+--->DONE!!!
+
+
+LTL(R) checking:
+- trace_check renamed check_ltl
+--->DONE!!!
+
+
+difference between "delete model" and "close model" unclear
+--->DONE!!!
+
+under cygwin from the gui "command biocham not found check your PATH"
+--->NOT DONE!!!
+
+saving a boolean simulation as png works in the calling directory
+but saving an ODE or Stochastic simulation goes through
+a different window asking for the format and then
+proposes a different directory.
+Better if the default directory could be the same
+--->NOT DONE!!!
+
+
+
+FF4: Good work! still to be improved:
+
+Pb of focus permanently on the main gui window
+(hides all other windows)
+--->DONE!
+
+"Online tutorial" should be replaced by "Biocham web page"
+--->DONE!
+
+The manual should be visible in html in a new window
+like currently "online tutorial" 
+(and if possible the pdf files in other windows also with the user app)
+--->NOT DONE!
+ 
+
+
+FF 3:
+Aurelien --> implement satisfaction_degree and check the documentation manual.tex (landscape was not up to date)
+
+added current_directory command
+
+changed some commands keeping previous ones for compatibility until GUI update
+several xshow_ commands to list_ commands 
+find_pinvar to find_conservations
+--->DONE!
+
+even when doing nothing the CPU is 100% used when biocham_gui is running :-(
+--->NOT DONE!
+
+
+
+adding a rule: you should accept if a final . is typed
+--->DONE!
+
+the errors for the kinetics are visible in the launching window not in the GUI
+
+no warning for Hill, an error not a warning for MM are raised in the GUI
+I think Biocham we should either raise an error, or accept several reactants
+taking the product of the reactants in the formulas,
+but certainly not the first reactant in alphabetical order as is currently the case
+--> Done accept with warning the product of the reactants for MM H and HN
+
+export_prolog export_lotos do not seem to work in command line
+strange . added in each line
+
+biocham_gui cannot be launched from outside its directory
+Administrateur@fages ~
+$ biocham_gui
+Unable to access jarfile /home/Administrateur/SVN/biocham/gui/biocham.jar
+
+Administrateur@fages ~
+$ cd SVN/biocham
+
+Administrateur@fages ~/SVN/biocham
+$ biocham_gui
+works but doesn't find the root directory (asks me to enter manually)
+
+FF 2:
+
+new/open model --> import_ode import_sbml ...
+--->DONE!
+reaction/influence graph dot don't work under standard environment AFS
+--->NOT DONE!
+
+
+FF 1:
+
+progression bar instead of messages ?
+--->DONE!
+
+
+First screen:
+- perhaps not necessary, NEWS, OVERVIEW, tutorials could be elsewhere
+- not obvious how to come back to this first screen
+--->DONE!
+
+
+Documentation (not tutorials)
+
+- manual html pdf
+- tutorial Dragana
+--->DONE!
+
+
+Parsing:
+- MAPK with patterns does not parse
+
+
+
+Simulations:
+- the last opened model could be selected by default
+--->DONE!
+
+
+- add boolean simulation (time no steps no macros )
+--->DONE!
+
+
+- add command line completion with ^i (without introducing an indent)
+--->DONE!
+
+
+- ODE simulation autorange by default
+--->DONE!
+
+
+
+CTL spec:
+- CTL spec editor does not handle ! as it should (parentheses are required although useless) --> pb biocham ?
+
+
+
+- genCTL should be first level button
+--->DONE!
+
+
+
+Command line:
+- the output should scroll automatically to the last line (focus)
+- ^p should give previous compmands
+- ^i do not insert the tab
+- plot
+--->DONE!
+
+
+Rule graphical editor:
+- no suffix for saving the drawing in xml sbgn ?
+- better than putting everything in the same location,
+  try writing (3?) reactions per line in the order you read the reactions ?
+--->DONE! (except saving layout/opening layout)
+
+- got:
+
+fr.inria.contraintes.biocham.Position@72c950
+215.0,321.0
+215.0,321.0
+215.0,321.0
+215.0,321.0
+vertex3: BEFORE: width=1,height=0
+May 11, 2010 4:05:21 PM java.util.prefs.FileSystemPreferences$7 run
+WARNING: Prefs file removed in background /afs/inria.fr/rocq/home/contraintes/fages/.java/.userPrefs/javax/swing/prefs.xml
+Exception in thread "Thread-6" java.lang.AbstractMethodError: org.apache.xerces.dom.DocumentImpl.getXmlStandalone()Z
+        at com.sun.org.apache.xalan.internal.xsltc.trax.DOM2TO.setDocumentInfo(DOM2TO.java:373)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.DOM2TO.parse(DOM2TO.java:127)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.DOM2TO.parse(DOM2TO.java:94)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transformIdentity(TransformerImpl.java:661)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:707)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:313)
+        at java.util.prefs.XmlSupport.writeDoc(XmlSupport.java:259)
+        at java.util.prefs.XmlSupport.exportMap(XmlSupport.java:338)
+        at java.util.prefs.FileSystemPreferences$8.run(FileSystemPreferences.java:607)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.util.prefs.FileSystemPreferences.writeBackCache(FileSystemPreferences.java:600)
+        at java.util.prefs.FileSystemPreferences.syncSpiPrivileged(FileSystemPreferences.java:784)
+        at java.util.prefs.FileSystemPreferences.access$2300(FileSystemPreferences.java:33)
+        at java.util.prefs.FileSystemPreferences$13.run(FileSystemPreferences.java:754)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.util.prefs.FileSystemPreferences.syncSpi(FileSystemPreferences.java:752)
+        at java.util.prefs.AbstractPreferences.sync2(AbstractPreferences.java:1317)
+        at java.util.prefs.AbstractPreferences.sync2(AbstractPreferences.java:1322)
+        at java.util.prefs.AbstractPreferences.sync2(AbstractPreferences.java:1322)
+        at java.util.prefs.AbstractPreferences.sync(AbstractPreferences.java:1308)
+        at java.util.prefs.FileSystemPreferences.sync(FileSystemPreferences.java:731)
+        at java.util.prefs.FileSystemPreferences.flush(FileSystemPreferences.java:807)
+        at java.util.prefs.FileSystemPreferences.syncWorld(FileSystemPreferences.java:451)
+        at java.util.prefs.FileSystemPreferences.access$1200(FileSystemPreferences.java:33)
+        at java.util.prefs.FileSystemPreferences$5$1.run(FileSystemPreferences.java:429)
+--->NOT DONE!
+
+
+
+
+
+Documentation manual.tex:
+
+- just add screen shots and explain the structure of the GUI and of the SBGN rule edutor
+--->NOT DONE!
+SS:
+
+- first screen about java checks only if something is wrong
+--->DONE!
+
+
+
+
+
+DJ:
+____________
+
+Things done:
+- show kinetics on right click on Rules node
+- boolean simulation supported
+- changed Simulation properties
+- improved simulation results comparison window (now you can remove on right click menu)
+- improved tab-management (now you can drag and replace them)
+- Set initial from trace
+- Renamed to the new manual file
+- command-line bugs
+- SBGN layout:(Automatic layout)
+- progress bar when loading model: 
+- tab menagement when working with different models...
+- different button for Robustness and landscape
+- some biocham methods names to be updated....
+
+Things to be done:
+- graph menubar(synchronize, properties, resetColors, openLayout,layout)
+- performance
+- bugs for Reaction/Influence graph on MAC OS
+- support for SBGN clones
+
+

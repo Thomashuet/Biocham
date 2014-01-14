@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Name: fr/inria/contraintes/biocham/
+Main-Class: fr/inria/contraintes/biocham/BiochamSplash
+Class-Path: balloontip_2009-03-19.jar freemarker.jar MultiSplit.jar plot.jar poi-3.5-beta5-20090219.jar PDFRenderer-2009_08_09.jar jgraph.jar dtdparser121.jar jox-1.17b3.jar xerces.jar jfreechart-1.0.13.jar jcommon-1.0.16.jar commons-collections-3.2.1.jar

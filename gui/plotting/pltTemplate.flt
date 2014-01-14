@@ -1,0 +1,10 @@
+Grid: off
+Color: on
+
+<#list dataSets as x>
+
+DataSet: "${x.title}"
+<#list x.values as y>
+  ${y.pair}
+</#list> 
+</#list>

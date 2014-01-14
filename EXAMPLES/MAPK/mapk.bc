@@ -1,0 +1,62 @@
+% MAPK cascade in solution (no scaffold)
+%
+% adapted from:
+% http://www-aig.jpl.nasa.gov/public/mls/cellerator/notebooks/MAPK-in-solution.html
+% by Sylvain Soliman <Sylvain.Soliman@inria.fr>
+% Nov. 26, 2003
+%
+% original source:
+% Levchenko, A., Bruck, J., Sternberg, P.W. (2000) .Scaffold proteins may
+% biphasically affect the levels of mitogen- activated protein kinase
+% signaling and reduce its threshold properties. Proc. Natl. Acad. Sci. USA
+% 97( 11):5818-5823.  http://www.pnas.org/cgi/content/abstract/97/11/5818
+
+% declare MEK~parts_of({p1,p2}).
+% declare MAPK~parts_of({p1,p2}).
+declare MEK~{{},{p1},{p1,p2}}.
+declare MAPK~{{},{p1},{p1,p2}}.
+
+RAF + RAFK <=> RAF-RAFK.
+
+RAF~{p1} + RAFPH <=> RAF~{p1}-RAFPH.
+
+MEK~$P + RAF~{p1} <=> MEK~$P-RAF~{p1}
+   where p2 not in $P.
+
+MEKPH + MEK~{p1}~$P <=> MEK~{p1}~$P-MEKPH.
+
+MAPK~$P + MEK~{p1,p2} <=> MAPK~$P-MEK~{p1,p2}
+   where p2 not in $P.
+
+MAPKPH + MAPK~{p1}~$P <=> MAPK~{p1}~$P-MAPKPH.
+
+
+RAF-RAFK => RAFK + RAF~{p1}.
+
+RAF~{p1}-RAFPH => RAF + RAFPH.
+
+MEK~{p1}-RAF~{p1} => MEK~{p1,p2} + RAF~{p1}.
+MEK-RAF~{p1} => MEK~{p1} + RAF~{p1}.
+
+MEK~{p1}-MEKPH => MEK + MEKPH.
+MEK~{p1,p2}-MEKPH => MEK~{p1} + MEKPH.
+
+MAPK-MEK~{p1,p2} => MAPK~{p1} + MEK~{p1,p2}.
+MAPK~{p1}-MEK~{p1,p2} => MAPK~{p1,p2} + MEK~{p1,p2}.
+
+MAPK~{p1}-MAPKPH => MAPK + MAPKPH.
+MAPK~{p1,p2}-MAPKPH => MAPK~{p1} + MAPKPH.
+
+
+present({
+RAFK,
+RAF,
+MEK,
+MAPK,
+MAPKPH,
+MEKPH,
+RAFPH
+}).
+
+%same as 'make_absent_not_present.'
+absent({?-?,?~{p1}~?}).

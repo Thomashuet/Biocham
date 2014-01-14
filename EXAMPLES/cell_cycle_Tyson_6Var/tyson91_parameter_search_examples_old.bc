@@ -1,0 +1,33 @@
+
+cmaes_params(100,0.01,0.1).
+
+search_parameters_cmaes(
+[k4,k6],
+[(0,1000),(0,1000)],
+F([Cdc2-Cyclin~{p1}]>u),
+[u],
+[0.3],
+150).
+
+
+search_parameters_cmaes(
+[k4,k6],
+[(0,1000),(0,1000)],
+F([Cdc2-Cyclin~{p1}]> x1  & F([Cdc2-Cyclin~{p1}]< x2  
+   & F([Cdc2-Cyclin~{p1}]> x1  & F([Cdc2-Cyclin~{p1}]< x2  ))   )) 
+& x1-x2> a ,  
+[a],
+[0.3],
+150).
+
+
+search_parameters_cmaes(
+[k1,k3,k4p,k4,k6,k7,k8,k9],
+[(0,1000),(0,1000),(0,1000),(0,1000),(0,1000),(0,1000),(0,1000),(0,1000)],
+F(d([Cdc2])/dt<0 & Time=t1  &X(d([Cdc2])/dt>0) & X   (F(d([Cdc2])/dt<0 & Time=t2 &X(d([Cdc2])/dt>0)     )        ))
+& t2-t1<p,
+[p],
+[20],
+150).
+
+

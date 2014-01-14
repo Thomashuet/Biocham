@@ -1,0 +1,7 @@
+hide_molecules(RP).
+
+numerical_simulation(100).
+
+plot.
+
+%sleep(3).

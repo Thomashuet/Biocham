@@ -1,0 +1,24 @@
+%%%% Enzyme Kinetics (example of the Michaelis-Menten mechanism) 
+%%%% The simple example produces the standard curve whereas the
+%%%% the cellular conditions example shows the linear plot if the enzyme
+%%%% sites are completely saturated.
+
+
+%% Cellular conditions
+(2*[ENZ]*[SUB],0.05*[ENSUB]) for ENZ + SUB <=> ENSUB.
+
+2*[ENSUB] for ENSUB => ENZ + P.
+
+%present(ENZ,0.01).
+%present(SUB,1).
+
+%%% Simple Example
+%(0.4*[ENZ]*[SUB],0.1*[ENSUB]) for ENZ + SUB <=> ENSUB.
+
+%0.1*[ENSUB] for ENSUB => ENZ + P.
+
+present(ENZ,0.1).
+present(SUB,1).
+
+absent(ENSUB).
+absent(P).

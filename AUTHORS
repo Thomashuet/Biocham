@@ -1,0 +1,60 @@
+BIOCHAM, Copyright INRIA 2003-2010, EPI Contraintes .
+
+BIOCHAM is developed by the EPI Contraintes at INRIA Paris-Rocquencourt, France.
+
+François Fages <Francois.Fages@inria.fr>
+is the coordinator of the development.
+
+The main authors of the code are or have been:
+
+Nathalie Chabrier-Rivier
+Initial version, NuSMV related code, examples
+
+Francois Fages <Francois.Fages@inria.fr>
+Initial version, documentation,
+boolean simulation and step doubling for Runge-Kutta method, 
+Prolog export and model checker in Prolog, 
+type inference, search_parameters, load_ode,
+time events
+revised documentation
+
+Steven Gay <Steven.Gay@inria.fr>
+Model reduction
+
+Dragana Jovanovska
+new graphical interface and SBGN graphical editor
+
+Thierry Martinez (Thierry.Martinez@inria.fr)
+biocham-web
+
+Aurelien Rizk <Aurelien.Rizk@inria.fr>
+QFLTL(R) constraint solving
+parameter optimization using CMAES search_parameters_cmaes
+robustness analysis, multi-conditions
+
+Sylvain Soliman <Sylvain.Soliman@inria.fr>
+from release 0.1 on
+patterns, Graphviz-related code, GNUplot related, bug-fixes
+Rosenbrock method, events,
+LTL model_checking, GUI, SBML import/export
+dimension analysis
+
+and also:
+
+Sakina Dorothee Ayate
+Locations
+
+Nathalie Sznajder
+Lotos related code
+
+Shrivaths Rajagopalan
+ODE simulation initial version
+
+Chi-Chia Huang
+Stochastic simulation initial version
+
+Robin Philip
+Preprocessor for event-based stochastic simulation 
+
+Katherine Chiang 
+preprocessor for hybrid stochastic-differential model composition and simulation

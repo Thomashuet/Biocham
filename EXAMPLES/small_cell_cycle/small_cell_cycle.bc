@@ -1,0 +1,54 @@
+% cascade of cdk1 activation  (cdk1~{Thr161}-cycB)
+
+% Première activation par complexation de la cdk1 par la cycline B
+cycB + cdk1 => cdk1-cycB.
+cycB + cdk1~{Thr161} => cdk1~{Thr161}-cycB.
+
+cycH + cdk7 => cycH-cdk7.
+
+cdk1-cycB =[cycH-cdk7]=> cdk1~{Thr161}-cycB.
+cdk1 =[cycH-cdk7]=> cdk1~{Thr161}.
+
+
+% réduction de l'activation de cdk1 par 10 si un des sites Thr14 et Tyr15 est phosphorylé et par 100 si les deux le sont!
+% inhibition par Myt1
+ cdk1~{Thr161}-cycB =[Myt1]=> cdk1~{Thr161,Thr14}-cycB.
+ cdk1~{Thr161,Tyr15}-cycB =[Myt1]=> cdk1~{Tyr15,Thr161,Thr14}-cycB.
+ cdk1-cycB =[Myt1]=> cdk1~{Thr14}-cycB.
+ cdk1~{Tyr15}-cycB =[Myt1]=> cdk1~{Tyr15,Thr14}-cycB.
+
+% inhibition par Wee1
+ cdk1~{Thr161}-cycB =[Wee1]=> cdk1~{Thr161,Tyr15}-cycB.
+ cdk1~{Thr161,Thr14}-cycB =[Wee1]=> cdk1~{Tyr15,Thr161,Thr14}-cycB.
+ cdk1-cycB =[Wee1]=> cdk1~{Tyr15}-cycB.
+ cdk1~{Thr14}-cycB =[Wee1]=> cdk1~{Tyr15,Thr14}-cycB.
+
+
+% inhibition de Wee1 par cdk1 activé
+Wee1=[cdk1~{Thr161}-cycB]=>Wee1~{p}.
+
+
+% activation de cdc25 par hyperphosphorylation
+cdc25C =[cdk1~{Thr161}-cycB]=> cdc25C~{Nterminaldomain}.
+
+
+%
+cdk1~{Tyr15,Thr161,Thr14}-cycB =[cdc25C~{Nterminaldomain} ]=>cdk1~{Tyr15,Thr161}-cycB.
+cdk1~{Thr161,Tyr15, Thr14}-cycB =[cdc25C~{Nterminaldomain} ]=>cdk1~{Thr161, Thr14}-cycB.
+cdk1~{Thr161,Tyr15, Thr14}-cycB =[cdc25C~{Nterminaldomain} ]=>cdk1~{Thr161}-cycB.
+
+cdk1~{Tyr15,Thr14}-cycB =[cdc25C~{Nterminaldomain} ]=>cdk1~{Tyr15}-cycB.
+cdk1~{Tyr15, Thr14}-cycB =[cdc25C~{Nterminaldomain} ]=>cdk1~{ Thr14}-cycB.
+cdk1~{Tyr15, Thr14}-cycB =[cdc25C~{Nterminaldomain} ]=>cdk1-cycB.
+
+
+cdk1~{Thr161,Thr14}-cycB =[cdc25C~{Nterminaldomain} ]=>cdk1~{Thr161}-cycB.
+cdk1~{Thr161, Thr14}-cycB =[cdc25C~{Nterminaldomain} ]=>cdk1~{Thr161}-cycB.
+
+cdk1~{Tyr15}-cycB =[cdc25C~{Nterminaldomain} ]=>cdk1-cycB.
+cdk1~{ Thr14}-cycB =[cdc25C~{Nterminaldomain} ]=>cdk1-cycB.
+
+
+
+
+

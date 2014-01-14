@@ -1,0 +1,11 @@
+present({a}).
+absent({
+b,
+c,
+d}).
+
+R1: a => b.
+R2: a => c.
+R3: b => d.
+R4: c => d.
+R5: d => a.

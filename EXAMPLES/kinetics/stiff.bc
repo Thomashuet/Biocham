@@ -1,0 +1,13 @@
+% An example of stiff ODEs, do not try with rk method...
+
+parameter(k11,4.0E6).
+
+parameter(k12,15).
+
+parameter(k2,25).
+
+(k11*[Enz]*[S],k12*[C]) for Enz+S <=> C.
+k2*[C] for C => Enz+P.
+
+present(Enz,1.0E-3).
+present(S,1).

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Encoding=UTF-8
+Name=@PACKAGE_NAME@
+Comment=Biochemical Abstract Machine
+Categories=Science;Biology;Math
+TryExec=biocham
+Exec=biocham %F
+Icon=biocham.png
+MimeType=application/x-biocham

@@ -1,0 +1,8 @@
+rmerge({S+E=>C, C=>P+E}).
+list_rules.
+sdelete(C).
+list_rules.
+rdelete(_=>S+E).
+list_rules.
+sdelete(E).
+list_rules.

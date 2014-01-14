@@ -1,0 +1,34 @@
+check_reachable(cdk1~{p3}-cycB).       % true
+%check_ctl(Ai(!(EF(cdk1~{p3}-cycB)))).    % false
+why.
+
+check_ctl(Ai(!(EF(cdk1~{p3}-cycB & EF(!(cdk1~{p3}-cycB)))))).   % false
+check_ctl(Ai(!(EF(cdk1~{p3}-cycB & EF(!(cdk1~{p3}-cycB) & EF(cdk1~{p3}-cycB)))))).
+% false
+
+check_ctl(Ei(EF(cdk1~{p3}-cycB & !(cycB) & EF(!(cdk1~{p3}-cycB)
+   & EF(cdk1~{p3}-cycB))))).  % true
+%check_ctl(Ai(!(EF((cdk1~{p3}-cycB & !(cycB)) & (EF(!(cdk1~{p3}-cycB)
+%   & (EF(cdk1~{p3}-cycB)))))))).   % false
+why.
+
+check_reachable(cycE).        % true
+check_reachable(SL1~{p1}).    % true
+check_ctl(Ai(EF(cycA))).        % true
+% check_ctl(Ei(E(!(cdc25C~{p1} | cdc25~{p2} | cdc25~{p1,p2}) U cdk1~{p3}-cycB))).
+% cdc25~{p2} undefined?
+
+%check_ctl(Ai(!(EF(cycE)))).     % false
+check_reachable(cycE).
+why.
+%check_ctl(Ai(!(EF(cycA)))).     % false
+check_reachable(cycA).
+why.
+%check_ctl(Ai(!(EF(SL1~{p1})))). % false
+check_reachable(SL1~{p1}).
+why.
+%check_ctl(Ai(!(E(!(cdc25C~{p1}) U cdk1~{p3}-cycB)))).  % false
+check_checkpoint(cdc25C~{p1},cdk1~{p3}-cycB).
+why.
+
+quit.

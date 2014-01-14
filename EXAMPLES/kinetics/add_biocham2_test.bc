@@ -1,0 +1,3 @@
+current_directory.
+add_rule(foo => bar).
+change_directory('..').

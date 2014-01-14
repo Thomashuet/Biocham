@@ -1,0 +1,5 @@
+0.5*[CH3NC] for CH3NC => CH3CN.
+
+present(CH3NC,1).
+
+absent(CH3CN).

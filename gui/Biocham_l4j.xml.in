@@ -1,0 +1,32 @@
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>biocham.jar</jar>
+  <outfile>BiochamGUI.exe</outfile>
+  <cmdLine></cmdLine>
+  <stayAlive>false</stayAlive>
+  <icon>Biocham.ico</icon>
+  <jre>
+    <minVersion>1.5.0</minVersion>
+  </jre>
+  <!--
+  <splash>
+    <file>@SRCFULLDIR@splash.bmp</file>
+    <waitForWindow>true</waitForWindow>
+    <timeout>60</timeout>
+    <timeoutErr>true</timeoutErr>
+  </splash>
+  -->
+  <versionInfo>
+    <fileVersion>@PACKAGE_SHORTVERSION@.0.0</fileVersion>
+    <txtFileVersion>@PACKAGE_VERSION@</txtFileVersion>
+    <fileDescription>BIOCHAM main application</fileDescription>
+    <copyright>Copyright INRIA 2006-2010, GPL v2</copyright>
+    <productVersion>@PACKAGE_SHORTVERSION@.0.0</productVersion>
+    <txtProductVersion>@PACKAGE_VERSION@</txtProductVersion>
+    <productName>BIOCHAM</productName>
+    <companyName>Projet Contraintes - INRIA</companyName>
+    <internalName>@PACKAGE_NAME@</internalName>
+    <originalFilename>biocham.exe</originalFilename>
+  </versionInfo>
+</launch4jConfig>

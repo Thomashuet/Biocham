@@ -1,0 +1,79 @@
+add_biocham(initial_state).
+
+list_rules.
+
+list_initial_state.
+
+list_molecules.
+
+% test activation of MPF factor'
+check_ctl(Ei(EF(cdk1~{Thr161}-cycB))).
+why.
+
+% Can the MPF factor be activated desactivated and again activated ?
+check_ctl(Ei(EF(cdk1~{Thr161}-cycB & EF(!(cdk1~{Thr161}-cycB) &
+   EF(cdk1~{Thr161}-cycB))))).
+why.
+
+
+%  Ok but if cycline B is consumed by the first activation ?
+check_ctl(Ei(EF(cdk1~{Thr161}-cycB & !(cycB) & EF(!(cdk1~{Thr161}-cycB) &
+   EF(cdk1~{Thr161}-cycB))))).
+why.
+
+pathway.
+
+% Existe-t-il un etat initial tel qu'on ait jamais aucune
+% cycB-cdk1~{Tyr15}~? ?
+check_ctl(Ei(AG(!(cdk1~{Tyr15,Thr14}-cycB | cdk1~{Tyr15}-cycB | cycB-cdk1~{Thr161,Tyr15} | cycB-cdk1~{Thr14,Thr161,Tyr15})))).
+
+% Et avec un etat initial plus lache: 
+undefined({cdk1,cycB,cycH, cdk7, Myt1,  Wee1, cdc25C}).
+check_ctl(Ei(AG(!(cdk1~{Tyr15,Thr14}-cycB | cdk1~{Tyr15}-cycB |
+   cycB-cdk1~{Thr161,Tyr15} | cycB-cdk1~{Thr14,Thr161,Tyr15})))).
+why.
+
+present({cdk1,cycB,cycH, cdk7, Myt1,  Wee1, cdc25C}).
+
+% When the MPF factor is activated is it always possible that it is going to
+% be inactivated ?
+check_ctl(Ai(AG(cdk1~{Thr161}-cycB -> EF(!(cdk1~{Thr161}-cycB))))).
+why.
+% There is no explenation because it is always right!
+
+% And the dual: When the MPF factor is inactivated is it always possible
+% that it is going to be activated ?
+check_ctl(Ai( AG( !(cdk1~{Thr161}-cycB) -> EF(cdk1~{Thr161}-cycB)))).
+why.
+% MPF factor cannot be reactivated when cdc25C activated is absent
+
+% add cdc25C~{Nterminaldomain} present and test again
+present({cdc25C~{Nterminaldomain}}).
+check_ctl(Ai( AG( !(cdk1~{Thr161}-cycB) -> EF(cdk1~{Thr161}-cycB)))).
+
+% Both queries, can be asked in just one and can be interpreted by an
+% oscillation or a cyclic activation.
+check_ctl(Ai(AG( (cdk1~{Thr161}-cycB -> EF(!(cdk1~{Thr161}-cycB)))
+	& ((!(cdk1~{Thr161}-cycB)) -> EF(cdk1~{Thr161}-cycB))))).
+
+
+% Example of impossible cycle in this model
+check_ctl(Ai(AG(( Wee1 -> EF(!(Wee1)))	& (!(Wee1)) -> EF(Wee1)))).
+why.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Now simulation
+hide_molecules(?).
+show_molecules({cdk1~{Thr161,?}-?, cdk1-?, cycB}).
+show_hide.
+
+boolean_simulation(30).
+plot.
+
+% wait 10 seconds before quit. 
+% sleep(2).
+
+export_plot(small_cell_cycle_test).
+% to see the result do "gnuplot -persist small_cell_cycle_test.plot

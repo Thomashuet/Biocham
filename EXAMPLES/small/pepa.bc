@@ -1,0 +1,7 @@
+transcription: _ =[P2]=> M.
+degradation_M: M => _.
+translation: M => P.
+P => _.
+dimerization: 2*P <=> P2.
+
+export_biopepa('pepa.biopepa').

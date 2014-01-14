@@ -1,0 +1,33 @@
+<!ELEMENT BiochamLayout (reactions?)>
+<!ELEMENT reactions (reactionsArray*)>
+<!ELEMENT reactionsArray (position, reactants, products, modulators)>
+<!ELEMENT position (#PCDATA)>
+<!ELEMENT size (#PCDATA)>
+<!ELEMENT reactants (molecules?)>
+<!ELEMENT products (molecules?)>
+<!ELEMENT modulators (molecules?)>
+<!ELEMENT molecules (position,size)>
+<!ATTLIST position x CDATA "">
+<!ATTLIST position y CDATA "">
+<!ATTLIST position x1 CDATA "">
+<!ATTLIST position y1 CDATA "">
+<!ATTLIST size width CDATA "">
+<!ATTLIST size height CDATA "">
+<!ATTLIST reactionsArray name CDATA "">
+<!ATTLIST reactionsArray type CDATA "">
+<!ATTLIST reactionsArray cardinality CDATA "">
+<!ATTLIST reactionsArray compartment CDATA "">
+<!ATTLIST reactionsArray color CDATA "">
+<!ATTLIST reactionsArray orientation CDATA "">
+<!ATTLIST reactionsArray reversible CDATA "">
+<!ATTLIST reactionsArray reversibilityType CDATA "">
+<!ATTLIST molecules name CDATA "">
+<!ATTLIST molecules id CDATA "">
+<!ATTLIST molecules type CDATA "">
+<!ATTLIST molecules color CDATA "">
+<!ATTLIST molecules state CDATA "">
+<!ATTLIST molecules cardinality CDATA "">
+<!ATTLIST molecules isResponsable CDATA "">
+<!ATTLIST molecules isModulator CDATA "">
+<!ATTLIST molecules representingName CDATA "">
+<!ATTLIST molecules compartment CDATA "">

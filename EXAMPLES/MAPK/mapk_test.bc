@@ -1,0 +1,20 @@
+% MAPK boolean model testing
+
+% hide intermediary molecules (complexes and PH)
+hide_molecules({?-?,MAPKPH,MEKPH,RAFPH}).
+
+% simulation for 100 steps
+boolean_simulation(100).
+% save the plotting data in the current directory
+% later launching gnuplot and executing 'load "test_mapk.plot"' will produce
+% the image corresponding to the above simulation.
+change_directory('..').
+export_plot(mapk_test).
+
+% MEKp is a checkpoint for the cascade (producing MAPKpp)
+check_ctl(Ai(!(E(!(MEK~{p1}) U MAPK~{p1,p2})))).
+% true
+
+% the PH complexes are only here to "slow down" the cascade
+check_ctl(Ai(E(!(MEK~{p1}-MEKPH) U MAPK~{p1,p2}))).
+% true

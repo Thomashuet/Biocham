@@ -1,0 +1,7 @@
+application/x-biocham
+	description=Biocham Document
+	default_action_type=aplication
+	default_application_id=biocham
+   short_list_application_ids_for_novice_user_level=biocham
+   icon_filename=biocham
+   category=Documents/Science/Biology

@@ -1,0 +1,13 @@
+%%%% Enzymes with competitive inhibition
+
+(10*[ENZ]*[SUB],10*[ENSUB]) for ENZ + SUB <=> ENSUB.
+(5*[ENSUB]*[INH],5*[ENZIN]) for ENZ + INH <=> ENZIN.
+1*[ENSUB] for ENSUB => ENZ + P.
+
+present(ENZ,0.5).
+present(SUB,0.5).
+present(INH,0.4).
+
+absent(ENSUB).
+absent(ENZIN).
+absent(P).

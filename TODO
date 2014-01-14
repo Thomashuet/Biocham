@@ -1,0 +1,182 @@
+TODO list for future after 3.3
+------------------------------
+
+FF1 
+unify LTL(R) and QFLTL(R) commands
+allow QFLTL(R) specifications with objective values
+
+FF2
+export_CTMC ?
+export_Boolean ?
+
+FF3
+events for modifying not only parameters but also state variables (concentrations)
+
+FF4
+domains (alias trace_analyze) should return the domains of variables plus Time
+
+FF5
+use a predicate for warning and errors in the Prolog code
+and put a section in the user's manual
+
+FF6
+provide facilities to express constraints on parameters
+
+FF7
+compute T-invariants, siphons and traps
+
+FF8
+allow negative values (and kinetics expression?) in present
+
+
+TODO list for release 3.3
+-------------------------
+
+DONE FF-4 bug on show_parameters with Rosenbrock
+
+FF-3 parameter(p,v) does not (always) change parameter
+
+DONE FF-2 connection to NuSMV broken on Ubuntu !
+
+DONE FF-1 export_sbml loops since events
+
+FF1
+bug Tyson 6 var with k2=0 and k5=0
+for cmaes search parameters
+(disappears when we suppress these parameters)
+
+DONE FF2
+Hill H(v,k,n)
+should allow n to be a parameter or expression
+
+FF3
+cmaes search with oscil does not work
+
+FF4
+add invariants ne change pas show_ODE (show_kinetics)
+
+FF5
+pb ELisabetta avec load_ODE ? test load_ODE
+
+DONE FF6
+when making a release
+we should not provide the source files of the documentation
+only manual.pdf and manual.html with necessary images
+
+FF7 
+clean and add our examples
+make sure they are in the distrib
+
+DONE FF8 still bug with time events, events fixed for all numerical methods
+time_events have been added to events
+they are exported in Biocham by printing 
+"event(C,PL,VL)" or time_event(T,C,PL,VL) not "add_event(C,PL,VL)"
+for the [GUI] they are written add_time_event(T,C,PL,VL)
+
+FF9
+export_biocham could export numerical_simulation method with parameters and others ?
+
+TODO list for release 3.1
+-------------------------
+
+FF1: bug reduction de modeles
+
+avec EXAMPLES/kinetics/MM.bc
+
+rmerge({S+E=>C, C=>P+E}).
+list_rules.
+rdelete(C=>S+E).
+sdelete(C).
+--> parse_error (S+E) 
+
+FF2: DONE!
+
+pas de message d'erreur sur ajout de molecule localisee
+le parser (et la doc) ne devrait permettre de localiser que les objets molecules
+pas les sous-molecules
+
+biocham: add_rule(A::l=>B).
+A::l=>B
+
+biocham: add_rule((A::L)-B =>C).
+
+biocham: list_rules.
+A::l=>B.
+
+
+Sylvain
+-------
+
+SS1:
+====
+
+Patterns <=> (resp. <=[_]=>) are actually equivalent to => (resp. =[_]=>)
+
+*****
+biocham: add_rule(a + b => c + d).
+a+b=>c+d
+
+biocham: list_rules(a + ? <=> ?).
+a+b=>c+d
+
+biocham: list_rules(? <=> a + ?).
+
+biocham:
+*****
+
+Thus, the pattern <=> is neither the conjunction nor the disjunction of => and
+<=
+
+-> document it?
+
+-> refuse bidirectional patterns...
+
+-> remove all biocham patterns? ;)
+
+
+SS2:
+====
+
+parameter(k, 1).
+present(X, k).
+
+-> should force k to be dimensionless in dimensional analysis.
+
+SS3:
+====
+
+The new GUI does not open a file when a .bc file is double-clicked or when a
+.bc file is dropped onto its icon.
+
+SS4:
+====
+
+Keyboard shortcuts, especially classical ones (CTRL-W = close, CTRL-S = save,
+CTRL-N = new...) and often used ones (numerical simulation for instance) are
+missing or surprising...
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Elisabetta De Maria 
+
+export_sbml(file.bc)
+The current biocham implementation already deals with species and parameter declarations and with reactions.
+Macros must be added using the rule type AssignmentRule.  The left-hand side of an assignment rule can refer to the identifier of a species, compartment, or parameter.
+The macro square_wave should be treated apart (frac is needed to encode it since a primitive for square waves in not present in sbml, or at least I didn't find it).
+Events mut be added using eventAssignment. As for events related to time, the csymbol relative to time must be used.
+
+
+export_ode(file.bc)
+The current biocham implementation already deals with species and parameter declarations and with reactions.
+Macros exportation is already implemented but the case of square waves should be dealt with.
+Events should be added using global flags. I didn't find yet  how to encode time.
+
+load_sbml(file.xml)
+Events are already added but the ones concerning time must be treated yet.
+
+load_ode(file.ode)
+Events must be added.
+
+
+Furthermore, cosinus and sinus must be added in export_sbml, export_ode, load_sbml, and load_ode.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

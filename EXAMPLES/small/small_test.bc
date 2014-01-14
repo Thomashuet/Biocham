@@ -1,0 +1,6 @@
+list_initial_state.
+
+boolean_simulation(10).
+
+check_ctl(Ei(EF(a & b & c))).
+% Ei(EF(a&b&c)) is true

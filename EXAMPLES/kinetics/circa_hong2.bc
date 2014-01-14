@@ -1,0 +1,24 @@
+%%% Circadian rhythm from Chris Hong, 1999, Biophys. J.
+
+parameter(vm,1).
+parameter(km,0.1).
+parameter(vp,0.5).
+parameter(kp1,10).
+parameter(kp2,0.03).
+parameter(kp3,0.1).
+parameter(Keq,200).
+parameter(Pcrit,0.1).
+parameter(Jp,0.05).
+
+
+vm/(1+([Pt]*(1-(2/(1+(1+8*Keq*[Pt])^0.5)))/(2*Pcrit))^2) for _=[Pt]=> M.
+km*[M] for M =>_.
+
+vp*[M] for _=[M]=>Pt.
+(kp1*2/(1+(1+8*Keq*[Pt])^0.5)+kp2)*[Pt]/(Jp+[Pt]) for Pt+Pt=>Pt.
+kp3*[Pt] for Pt=>_.
+
+present(Pt,0.25).
+present(M,2.5).
+
+

@@ -1,0 +1,755 @@
+
+declare cdk46~parts_of({p1,p2}).
+declare cycD~parts_of({p1}).
+declare cycE~parts_of({p1}).
+declare DMP1~parts_of({p1}).
+declare cdk2~parts_of({p1,p2}).
+declare cdk1~parts_of({p1,p2,p3}).
+declare cdk7~parts_of({p1}).
+declare E2F1_3~parts_of({p1}).
+declare cdc25A~parts_of({p1}).
+declare cdc25C~parts_of({p1,p2}).
+declare Skp1~parts_of({p1}).
+declare Skp2~parts_of({p1}).
+declare p53~parts_of({p1}).
+declare DP12~parts_of({p1}).
+declare pRb~parts_of({p1,p2}).
+declare P~parts_of({p1}).
+declare p107~parts_of({p1}).
+declare p130~parts_of({p1}).
+declare p68~parts_of({p1,p2}).
+
+
+%(C3,C10)
+cdk46~$P + cycD~$Q-$DMP1 => cdk46~$P-cycD~$Q-$DMP1
+where
+$DMP1 in { _ , DMP1~?}.
+
+
+
+%cycA and cycE compete in binding cdk2%
+%(C4,C6)
+cdk2~$P + cycA-$Cks1 => cdk2~$P-cycA-$Cks1
+where
+$Cks1 in {_,Cks1} .
+
+cdk2~$P + cycE~$Q-$Cks1 => cdk2~$P-cycE~$Q-$Cks1
+where
+$Cks1 in {_,Cks1} .
+
+
+%cycA and cycB compete in binding cdk1 %
+%(C5,C6,C14)
+cdk1~{p3}~$P + cycA-$Cks1 => cdk1~{p3}~$P-cycA-$Cks1
+where
+$Cks1 in {_,Cks1} .
+
+
+%(C5,C6)
+cdk1~$P + cycB-$Cks1 => cdk1~$P-cycB-$Cks1
+where
+$Cks1 in {_,Cks1} .
+
+cdk7~$P + cycH => cdk7~$P-cycH.
+
+
+
+    % * Cdk stimulatory (and inhibitory) phosphorylations
+
+%« All Cdks are activated by a phosphorylation carried out by cycH.cdk7 »
+
+%(C14)
+cdk7-$cycH =[cdk7-cycH]=>cdk7~{p1}-$cycH
+where $cycH in {_ , cycH}.
+
+%(C14,C6)
+cdk1~$P-$comp =[cdk7-cycH]=> cdk1~{p3}~$P-$comp 
+where p3 not in $P
+and   $comp in {_, Cks1, cycA, cycB, Cks1-cycA, Cks1-cycB}.
+
+%(C14,C6)
+cdk2~$P-$comp =[cdk7-cycH]=> cdk2~{p2}~$P-$comp 
+where p2 not in $P
+and   $comp in {_,Cks1, cycA, cycE~?, cycA-E2F1_3~?, Cks1-cycA, Cks1-cycE~?, Cks1-cycA-E2F1_3~?}.
+
+%(C14)
+cdk46~$P-$cycD =[cdk7-cycH]=> cdk46~{p2}~$P-$cycD 
+where p2 not in $P
+and   $cycD in {_, cycD~?, DMP1~?-cycD~?}.
+
+%« inhibitory phosphorylations »
+
+%(C16)
+cdk1~$P-$cycA =[Wee1]=>cdk1~{p2}~$P-$cycA
+where p2 not in $P
+and   $cycA in {cycA, Cks1-cycA}.
+
+
+%(C16)
+cdk1~$P-$cycB =[Wee1]=>cdk1~{p2}~$P-$cycB
+where p2 not in $P
+and   $cycB in {cycB, Cks1-cycB}.
+
+%(C16)
+cdk1~$P-$cycA =[Myt1]=>cdk1~{p1}~$P-$cycA
+where p1 not in $P
+and   $cycA in {cycA, Cks1-cycA}.
+
+
+%(C16)
+cdk1~$P-$cycB =[Myt1]=>cdk1~{p1}~$P-$cycB
+where p1 not in $P
+and   $cycB in {cycB, Cks1-cycB}.
+
+
+%(C16)
+cdk1~$P-$cycA =[Wee1]=>cdk1~{p1}~$P-$cycA
+where p1 not in $P
+and   $cycA in {cycA, Cks1-cycA, E2F1_3~?-cycA}.
+
+
+
+%(C16)
+cdk1~$P-$cycE =[Wee1]=>cdk1~{p1}~$P-$cycE
+where p1 not in $P
+and   $cycE in {cycE, Cks1-cycE}.
+
+%« positive feedback : cdc25C remove inhibitory phosphorylations»
+
+%(C18)
+ cdk1~{p2}~$Q-$comp =[cdc25C~{p1}~?]=> cdk1~$Q-$comp
+where p2 not in $Q
+and   $comp in {_, Cks1, cycA, cycB, Cks1-cycA, Cks1-cycB}.
+
+%(C18)
+ cdk1~{p1}~$Q-$comp =[cdc25C~{p1}~?]=> cdk1~$Q-$comp
+where p1 not in $Q
+and   $comp in {_, Cks1, cycA, cycB, Cks1-cycA, Cks1-cycB}.
+
+
+%    * Cdc25C and CDC25A phosphorylations
+
+%(C37)
+cdc25C~$P =[Plk1]=> cdc25C~{p1}~$P
+where p1 not in $P.
+
+ 
+%« positive feedback »
+
+%(C36)
+cdc25C~$P =[cdk1~{p1}-cycA-$Cks1]=>cdc25C~{p1}~$P
+where p1 not in $P
+and   $Cks1 in {_, Cks1}.
+
+%(C36)
+cdc25C~$P =[cdk1~{p1}-cycB-$Cks1]=>cdc25C~{p1}~$P
+where p1 not in $P
+and   $Cks1 in {_, Cks1}.
+
+
+%« cdc25C sequestered »
+
+
+%(C38)
+cdc25C~$P =[Chk1]=> cdc25C~{p2}~$P
+where p2 not in $P.
+
+%(C39)
+cdc25C~$P =[C_TAK1]=>cdc25C~{p2}~$P
+where p2 not in $P.
+
+%(C40)
+m_14_3_3 + cdc25C~{p2}~$P => m_14_3_3-cdc25C~{p2}~$P.
+
+
+
+%« RAS activation : alternative notation needed to represent a complicated process that we can't (don't want) explain. »
+
+%(C24)
+Ras + Raf1 + cdc25A => Ras + Raf1 + cdc25A~{p1}.
+
+%(E22)
+Raf1 + cdc25A~$P =[Ras]=> Raf1-cdc25A~$P .
+
+
+
+%«cdc25A  phosphorylations»
+
+cdk46~{p1}~$P-$cycD =[cdc25A~{p1}]=> cdk46~$P-$cycD
+where p1 not in $P
+and   $cycD in {_, cycD~?, cycD~?-DMP1~?}.
+
+
+cdk2~{p1}~$P-$comp =[cdc25A~{p1}]=> cdk2~$P-$comp
+where p1 not in $P
+and   $comp in {_, Cks1, cycA, cycE~?, cycA-E2F1_3~?, Cks1-cycA, Cks1-cycE~?, Cks1-cycA-E2F1_3~?}.
+
+ 
+
+%    * Other cyc.cdk phosphorylations
+
+%« internal regulation »
+
+%(C42)
+Wee1 =[cdk1~{p3}-cycA-$Cks1]=> Wee1~{p1}
+where $Cks1 in {_, Cks1}.
+
+%(C42)
+Wee1 =[cdk1~{p3}-cycB-$Cks1]=> Wee1~{p1}
+where $Cks1 in {_, Cks1}.
+
+
+
+%(C28)
+Skp2-$Skp1 =[cdk2~{p2}-cycA-$Cks1]=> Skp2~{p1}-$Skp1
+where $Cks1 in {_, Cks1}
+and   $Skp1 in {_, Skp1~?, Skp1~?-cdk2~?-cycA, Skp1~?-cdk2~?-Cks1-cycA}.
+
+%(C27)
+Skp1-$Skp2 =[cdk2~{p2}-cycA-$Cks1]=> Skp1~{p1}-$Skp2
+where $Cks1 in {_, Cks1}
+and   $Skp2 in {_, Skp2~?, Skp2~?-cdk2~?-cycA, Skp2~?-cdk2~?-Cks1-cycA}.
+
+%(C27)
+p68~$P =[cdk2~{p2}-cycA-$Cks1]=> p68~{p2}~$P
+where $Cks1 in {_, Cks1}
+and   p2 not in $P.
+
+
+
+cycE-$cdk2 =[cdk2~{p2}-cycE-$Cks1]=> cycE~{p1}-$cdk2
+where $Cks1 in {_, Cks1}
+and   $cdk2 in {_, cdk2~?, cdk2~?-Cks1}.
+
+%(R2)
+p68~$P =[cdk2~{p2}-cycE~?-$Cks1]=> p68~{p1}~$P
+   where $Cks1 in {_, Cks1}
+   and   p1 not in $P.
+
+%(C42)
+DMP1 =[cdk46~{p1}-cycD~?-$DMP1]=> DMP1~{p1}
+where $DMP1 in {_, DMP1~?}.
+
+ 
+%« Transcription »
+
+%(C42)
+SL1 =[cdk1~{p3}-cycA-$Cks1]=> SL1~{p1}
+where $Cks1 in {_, Cks1}.
+
+%(C42)
+SL1 =[cdk1~{p3}-cycB-$Cks1]=> SL1~{p1}
+where $Cks1 in {_, Cks1}.
+
+
+%« E2F Box »
+
+%(E20)
+E2F1_3-$Sp1 =[cdk2~{p2}-cycA-E2F1_3~?-$Cks1]=> E2F1_3~{p1}-$Sp1
+where $Cks1 in {_, Cks1}
+and   $Sp1 in {_, Sp1}.
+
+
+%(E20)
+DP12-$p53 =[cdk2~{p2}-cycA-E2F1_3~?-$Cks1]=> DP12~{p1}-$p53
+where $Cks1 in {_, Cks1}
+and   $p53 in {_, p53~?}.
+ 
+
+%(C31)
+pRb~$P =[cdk46~{p2}-cycD~?-$DMP1]=> pRb~{p1}~$P
+where p1 not in $P
+and   $DMP1 in {_,DMP1 ~?}.
+
+%(C32)
+pRb~{p1} =[cdk2~{p2}-cycE~?-$Cks1]=> pRb~{p1}~{p2} 
+where $Cks1 in {_, Cks1}.
+
+%pRb can't be in a complex if hyperphosphorylated. Thus there is no context%
+
+
+%    * Implicit inhibition
+
+%(C43)
+p16 + cdk7~$P => p16-cdk7~$P.
+
+%(C8)
+p16 + cdk46~$P => p16-cdk46~$P.
+
+%(C23,R6)
+PCNA + p21-$cdk2 => PCNA-p21-$cdk2
+where $cdk2 in {_, cdk2~?-cycA, cdk2~?-Cks1-cycA}.
+
+%(C23)
+p21-$PCNA + cdk2~$P-cycA-$Cks1 => p21-cdk2~$P-cycA-$PCNA-$Cks1
+where $PCNA in {_, PCNA }
+and   $Cks1 in {_, Cks1}.
+
+%(C23)
+p21 + cdk2~$P-cycE~$Q-$Cks1 => p21-cdk2~$P-cycE~$Q-$Cks1
+where $Cks1 in {_, Cks1}.
+
+
+%(C7)
+p21 + cdk46~$P-cycD~$Q-$DMP1 => p21-cdk46~$P-cycD~$Q-$DMP1
+where $DMP1 in {_,DMP1 ~?}.
+
+%(C23)
+p27 + cdk2~$P-cycA-$Cks1 => p27-cdk2~$P-cycA-$Cks1
+where $Cks1 in {_, Cks1}.
+
+%(C23)
+p27 + cdk2~$P-cycE~$Q-$Cks1 => p27-cdk2~$P-cycE~$Q-$Cks1
+where $Cks1 in {_, Cks1}.
+
+%(C7)
+p27 + cdk46~$P-cycD~$Q => p27-cdk46~$P-cycD~$Q-$DMP1
+where $DMP1 in {_,DMP1 ~?}.
+
+%(C23)
+p57 + cdk2~$P-cycA-$Cks1 => p57-cdk2~$P-cycA-$Cks1
+where $Cks1 in {_, Cks1}.
+
+%(C23)
+p57 + cdk2~$P-cycE~$Q-$Cks1 => p57-cdk2~$P-cycE~$Q-$Cks1
+where $Cks1 in {_, Cks1}.
+
+%(C7)
+p57 + cdk46~$P-cycD~$Q-$DMP1 => p57-cdk46~$P-cycD~$Q-$DMP1
+where $DMP1 in {_,DMP1 ~?}.
+ 
+
+%« p19Skp1 et p45SKp2 »
+
+%(C26)
+Skp1~$P + Skp2~$Q-$cdk2 => Skp1~$P-Skp2~$Q-$cdk2
+where $cdk2 in {_, cdk2~?-cycA, cdk2~?-Cks1-cycA}.
+
+%(C25)
+Skp2~$P-$Skp1 + cdk2~$Q-cycA-$Cks1 => Skp2~$P-cdk2~$Q-cycA-$Skp1-$Cks1
+where  $Cks1 in {_, Cks1}
+and    $Skp1 in {_, Skp1~?}.
+
+
+%    * Degradation
+
+%(C9)
+cycD~{p1} => _.
+
+%alternative notation : degradation + unbinding%
+
+%(S9) non (C9) !
+cdk46~$P-cycD~{p1} => cdk46~$P.
+
+%(C13)
+cycE~{p1} => _.
+
+ 
+
+%This paradoxical relationship might be due to intermolecular action of an active cdk2.cycE on an inactive p27.cdk2.cycE%
+
+%(C21)
+p27-$cdk2 =[cdk2~{p2}-cycE~?-$Cks1]=> p27~{p1}-$cdk2 
+where  $Cks1 in {_, Cks1}
+and    $cdk2 in {_, cdk2~?-cycE~?}.
+
+%(C21)
+p27~{p1}=> _.
+
+%(C29)
+cycA =[Skp2~?-Skp1~?]=> _.
+
+%(C41)
+APC =[Plk1]=> APC~{p1}.
+
+%(C41)
+cycB =[APC~{p1}]=> _.
+
+
+
+
+%    * Miscellaneous
+
+%« Cks1 may be involved in the dephophorylation of cdk Tyr15 »
+
+%(C6)
+cdk1~$P-$cycAB + Cks1 => cdk1~$P-Cks1-$cycAB
+where $cycAB in {_, cycA, cycB}.
+
+%(C6)
+cdk2~$P-$cyc + Cks1 => cdk2~$P-Cks1-$cyc
+where $cyc in {_, cycA, cycA-E2F1_3~?, cycE~?}.
+
+%(C10)
+DMP1~$P + cycD~$Q-$cdk46 => DMP1~$P-cycD~$Q-$cdk46
+where $cdk46 in {_, cdk46~?}.
+
+%(C11)
+DMP1~$P + #p19ARF => DMP1~$P-#p19ARF.
+
+%(C11)
+_ =[DMP1~?-#p19ARF]=> p19ARF.
+
+ 
+%    * Replication
+
+%(R11)
+PCNA + cycD~$P => PCNA-cycD~$P.
+
+%(R10)
+PCNA + Gadd45 => PCNA-Gadd45.
+
+%(C34)
+p21 + Gadd45 => p21-Gadd45.
+
+%(C30)
+cdk1~$P-$Cks1 + Gadd45 => cdk1~$P-Gadd45-$Cks1
+where  $Cks1 in {_, Cks1}.
+
+%Gadd45 binds cdk1 and inhibits cdk1 activity%
+
+%(S9)
+RPA + cycA => RPA-cycA.
+
+ 
+
+%    * P53 box
+
+%more detail in 6b%
+% erreur chez Marc et Vincent! (Mdm2<>|E2F1-3.DP1/2<x;y>->Mdm2.E2F1-3.pRb<;x;y>; {}; {})
+Mdm2 + E2F1_3~$P-DP12~$Q => Mdm2-E2F1_3~$P-DP12~$Q.
+Mdm2 + E2F1_3~$P-pRb~$Q => Mdm2-E2F1_3~$P-pRb~$Q.
+
+Mdm2 + pRb~$P => Mdm2-pRb~$P.
+
+_ =[p53~?]=> Mdm2.
+
+%(P43)
+_ =[p53~?]=> p21.
+
+%(P44)
+_ =[p53~?]=> Gadd45.
+
+%(P48)
+_ =[p53~?]=> c_Fos.
+
+
+
+%E2F box
+
+
+%    * E2F.DP1/2
+
+%(E1)
+E2F1_3-$SP1 + DP12 => E2F1_3-DP12-$SP1
+where $SP1 in {_, SP1}.
+
+%(E1)
+E2F4 + DP12 => E2F4-DP12.
+
+%(E1)
+E2F5 + DP12 => E2F5-DP12.
+%(E1)
+E2F6 + DP12 => E2F6-DP12.
+ 
+%(P26)
+p53~$P + DP12~$Q => p53~$P-DP12~$Q.
+
+
+
+%    * E2F.DP1/2 binding
+
+%(E2)
+pRb~$P-$comp + E2F1_3~$Q-DP12~$R-$SP1 => pRb~$P-E2F1_3~$Q-DP12~$R-$SP1
+where p2 not in $P
+and   $comp in {_, c_Abl, c_Abl-Raf1, Raf1}
+and   $SP1 in {_, SP1}.
+ 
+
+%(E3)
+p130-$Raf1 + E2F4-DP12~$P => p130-E2F4-DP12~$P-$Raf1
+where $Raf1 in {_, Raf1}.
+
+%(E3)
+p107-$Sp1 + E2F4-DP12~$P => p107-E2F4-DP12~$P-$Sp1
+where $Sp1 in {_, Sp1}.
+
+%(E3)
+pRb~$P-$comp + E2F4-DP12~$Q =>pRb~$P-E2F4-DP12~$Q-$comp
+where p2 not in $P
+and   $comp in {_, c_Abl, c_Abl-Raf1, Raf1}.
+
+%(E4)
+p130-$Raf1 + E2F5-DP12~$P => p130-E2F5-DP12~$P-$Raf1
+where $Raf1 in {_, Raf1}.
+
+HBP1 + p130-$Raf1 => HBP1-p130-$Raf1
+where $Raf1 in {_, Raf1}.
+
+
+
+%    * E2F.DP1/2 synthesis
+
+%(E5)
+E2F1_3~$P-DP12-$pRb + #E2 => E2F1_3~$P-DP12-#E2-$pRb
+where $pRb in {pRb~?, c_Abl-pRb~?, c_Abl-pRb~?-Raf1, Raf1-pRb~?, SP1, pRb~?-SP1, c_Abl-pRb~?-SP1, c_Abl-pRb~?-Raf1-SP1, Raf1-pRb~?-SP1}.
+ 
+%(E6)
+_ =[E2F1_3~?-DP12~?-#E2]=> $foo
+where $foo in {cycA, cycE, cycD, c_Myc, p19ARF, p107, Pol}. % in M. and V. model cycE, cycD, p107 can be synthesed phosphorylated !
+
+%(E7)(pRb.E2F1-3.DP1/2<x,y;z;t>.#E2-[->cycA<>|cycE<u>|cycD<v>|c-Myc<>|p19ARF<>|p107<w>|Pol<>];{c-Abl<>, SP1<>, c-Abl.SP1<;>}; {}) % NO inhibition rule !!!
+
+%(E22)
+_ =[Raf1-pRb~?-E2F1_3~?-DP12~?-#E2-$comp]=> $foo
+where $foo in {cycA, cycE, cycD, c_Myc, p19ARF, p107, Pol}
+and   $comp in {c_Abl, SP1, c_Abl-SP1}.
+
+ 
+%(E13)
+HDAC1 + pRb~$P-E2F1_3~$Q-DP12~$R => HDAC1-pRb~$P-E2F1_3~$Q-DP12~$R-$comp
+where $comp in {c_Abl, SP1, c_Abl-SP1}.
+
+%(E7)
+HDAC1-pRb~$P-E2F1_3~$Q-DP12~$R-$comp + #E2 => #E2-HDAC1-pRb~$P-E2F1_3~$Q-DP12~$R-$comp
+where $comp in {c_Abl, SP1, c_Abl-SP1}.
+
+%(E14) HDAC1.pRb.E2F1-3.DP1/2<;x,y;z;t>.#E2--[->cycA<>|cycE<u>|cycD<v>|c-Myc<>|p19ARF<>|p107<w>|Pol<>]; {c-Abl<>,SP1<>, c-Abl.SP1<;>}; {}) % NO inhibition rule !!!
+
+%(E5)
+E2F4-DP12-$comp + #E2 => #E2-E2F4-DP12-$comp
+where $comp in {pRb~?, c_Abl-pRb~?, c_Abl-pRb~?-Raf1, Raf1-pRb~?, p130~?, Raf1-p130~?, p107~?, SP1-p107~?}.
+
+%(E6)
+_ =[E2F4-DP12~?-#E2]=> $foo
+where $foo in {cycA, cycE, cycD, c_Myc, p19ARF, p107, Pol}.
+
+
+%(E7)(pRb.E2F4.DP1/2<x,y;;z>.#E2-[->cycA<>|cycE<u>|cycD<v>|c-Myc<>|p19ARF<>|p107<w>|Pol<>];{c-Abl<>}; {})    % NO inhibition rule !!!
+
+%(E22)
+_ =[Raf1-pRb~?-E2F4-DP12~?-#E2-$c_Abl]=> $foo
+where $c_Abl in {_, c-Abl}
+and   $ foo in {cycA, cycE, cycD, c_Myc, p19ARF, p107, Pol}.
+
+
+%(E7)(p130.E2F4.DP1/2<;;x>.#E2-[->cycA<>|cycE<y>|cycD<z>|c-Myc<>|p19ARF<>|p107<t>|Pol<>];{}; {})    % NO inhibition rule !!!
+
+%(E22)
+_ =[Raf1-p130~?-E2F4-DP12~?-#E2]=> $foo
+where $foo in {cycA, cycE, cycD, c_Myc, p19ARF, p107, Pol}.
+
+%(E7)(p107.E2F4.DP1/2<x;;y>.#E2-[->cycA<>|cycE<u>|cycD<v>|c-Myc<>|p19ARF<>|p107<w>|Pol<>]; {SP1<>}; {})  % NO inhibition rule !!!
+
+
+%(E13)
+HDAC1 + pRb~$P-E2F4-DP12~$Q-$c_Abl => HDAC1-pRb~$P-E2F4-DP12~$Q-$c_Abl 
+where $c_Abl in {_, c-Abl}.
+
+%(E7)
+HDAC1-pRb~$P-E2F4-DP12~$Q-$c_Abl  + #E2 => HDAC1-pRb~$P-E2F4-DP12~$Q-$c_Abl-#E2
+where $c_Abl in {_, c-Abl}.
+
+%(E14) (HDAC1.pRb.E2F4.DP1/2<;x,y;;z>.#E2--[->cycA<>|cycE<u>|cycD<v>|c-Myc<>|p19ARF<>|p107<w>|Pol<>]; {c-Abl<>}; {})  % NO inhibition rule !!!
+
+%(E13)
+HDAC1 + p130~$P-E2F4-DP12~$Q => HDAC1-p130~$P-E2F4-DP12~$Q.
+
+%(E7)
+HDAC1-p130~$P-E2F4-DP12~$Q + #E2 => HDAC1-p130~$P-E2F4-DP12~$Q-#E2.
+
+%(E14) (HDAC1.p130.E2F4.DP1/2<;x;;y>.#E2 --[->cycA<>|cycE<u>|cycD<v>|c-Myc<>|p19ARF<>|p107<w>|Pol<>]; {}; {})     % NO inhibition rule !!!
+
+ 
+%(E13)
+HDAC1 + p107~$P-E2F4-DP12~$Q-$SP1 => HDAC1-p107~$P-E2F4-DP12~$Q-$SP1
+where $SP1 in {_, SP1}.
+
+%(E7)
+HDAC1-p107~$P-E2F4-DP12~$Q-$SP1  + #E2 => #E2-HDAC1-p107~$P-E2F4-DP12~$Q-$SP1
+where $SP1 in {_, SP1}.
+
+%(E14) (HDAC1.p107.E2F4.DP1/2<;x;;y>.#E2 --[->cycA<>|cycE<u>|cycD<v>|c-Myc<>|p19ARF<>|p107<w>|Pol<>]; {SP1<>}; {})   % NO inhibition rule !!!
+
+ 
+
+%(E5)
+E2F5-DP12-$p130 + #E2 => #E2-E2F5-DP12-$p130
+where $p130 in {_, p130~?, Raf1-p130~?}.
+
+ 
+%(E6)
+_ =[E2F5-DP12~?-#E2]=> $foo
+where $foo in {cycA, cycE, cycD, c_Myc, p19ARF, p107, Pol}.
+
+ 
+%(E7)(p130.E2F5.DP1/2<x;;y>.#E2-[->cycA<>|cycE<u>|cycD<v>|c-Myc<>|p19ARF<>|p107<w>|Pol<>];{}; {})   % NO inhibition rule !!!
+
+ 
+%(E22)
+_ =[Raf1-p130~?-E2F5-DP12~?-#E2]=> $foo
+where $foo in {cycA, cycE, cycD, c_Myc, p19ARF, p107, Pol}.
+
+%(E13)
+HDAC1 + p130~?-E2F5-DP12~? => HDAC1-p130~?-E2F5-DP12~?.
+
+%(E7)
+HDAC1-p130~?-E2F5-DP12~? + #E2 => HDAC1-p130~?-E2F5-DP12~?-#E2.
+
+%(E14)(HDAC1.p130.E2F5.DP1/2<;x;;y>.#E2--[->cycA<>|cycE<u>|cycD<v>|c-Myc<>|p19ARF<>|p107<w>|Pol<>];{}; {})   % NO inhibition rule !!!
+
+ 
+
+%(E8)
+E2F6-DP12~$P + #E2 => E2F6-DP12~$P-#E2.
+
+%(E9) (E2F6.DP1/2<;x>.#E2-[->cycA<>|cycE<y>|cycD<z>|c-Myc<>|p19ARF<>|p107<t>|Pol<>]; {}; {})  % NO inhibition rule !!!
+
+
+
+%               * Synthesis modulation
+
+% « Sp1 »
+
+%(E24)
+SP1 + E2F1_3~$P-$DP1 => SP1-E2F1_3~$P-$DP1
+where $DP1 in { _, DP12~?, pRb~?-DP12~?, c_Abl-pRb~?-DP12~?, c_Abl-pRb~?-Raf1-DP12~?, Raf1-pRb~?-DP12~?}.
+
+%(E26)
+SP1 + p107~$P-$E2F4 => SP1-p107~$P-$E2F4
+where $E2F4 in {_, E2F4-DP12~?}.
+
+%(E20)
+cdk2~$P-cycA-$Cks1 + E2F1_3~$Q => cdk2~$P-cycA-E2F1_3~$Q-$Cks1
+where $Cks1 in {_, Cks1}.
+
+ 
+
+%(E23)
+SP1-$E2F1 + #E2SP => SP1-#E2SP-$E2F1
+where $E2F1 in  {_, E2F1_3~?, E2F1_3~?-DP12~?, pRb~?-E2F1_3~?-DP12~?, c_Abl-pRb~?-E2F1_3~?-DP12~?, c_Abl-pRb~?-Raf1-E2F1_3~?-DP12~?, Raf1-pRb~?-E2F1_3~?-DP12~?}.
+
+% (E27) binding of p107 to Sp1 seems to inhibit the binding of Sp1 to DNA%
+
+
+%(E23)
+_ =[SP1-#E2SP]=> $foo
+where $foo in {cycA ,cycE, cycD, c_Myc, p19ARF, p107, Pol}.
+
+%(E25)
+_ =[SP1-E2F1_3~?-#E2SP-$DP1]=> $foo
+where $foo in {cycA ,cycE, cycD, c_Myc, p19ARF, p107, Pol}
+and   $DP1 in {_, DP12~?, pRb~?-DP12~?, c_Abl-pRb~?-DP12~?, c_Abl-pRb~?-Raf1-DP12~?, Raf1-pRb~?-DP12~?}.
+
+ 
+ 
+%/«Raf : alternative notation»/
+
+%(E22)
+Raf1 + pRb~$P-$DP1 =[Ras]=> Raf1-pRb~$P-$DP1
+where p2 not in  $P
+and   $DP1 in {_, c_Abl, E2F4-DP12~?, c_Abl-E2F4-DP12~?,  E2F1_3~?-DP12~?, c_Abl-E2F1_3~?-DP12~?, SP1-E2F1_3~?-DP12~?, c_Abl-SP1-E2F1_3~?-DP12~?}.
+
+%(E22)
+Raf1 + p130~$P-$comp =[Ras]=> Raf1-p130~$P-$comp
+where $comp in {E2F5-DP12~?, E2F4-DP12~?, HBP1}.
+
+ 
+
+%    * Chromatin & acetylase box
+
+pCAF + p300 => PCAF-p300.
+
+histones =[pCAF]=> histones~{p1}.
+histones =[p130]=> histones~{p1}.
+
+%(H1)
+histones~{p1} =[HDAC1]=> histones.
+
+%(H1)(histones<0>-[->cycA<>|cycE<x>|cycD<y>|c-Myc<>|p19ARF<>|p107<z>|Pol<>];{}; {})    % NO inhibition rule !!!
+
+
+
+%   * Other pRB interactions
+
+%(E18)
+c_Abl + pRb~$P-$Raf1 => c_Abl-pRb~$P-$Raf1
+where $Raf1 in {_, Raf1, E2F4-DP12~?, Raf1-E2F4-DP12~?, E2F1_3~?-DP12~?, Raf1-E2F1_3~?-DP12~?, SP1-E2F1_3~?-DP12~?, Raf1-SP1-E2F1_3~?-DP12~?}.
+
+%(E17)
+pRb~$P + Jun-$c_Fos => pRb~$P-Jun-$c_Fos
+where $c_Fos in {_, c_Fos}.
+
+%(E16)
+CEBP + pRb~$P => CEBP-pRb~$P.
+
+
+%(E17)
+Jun-$pRb + c_Fos => Jun-c_Fos-$pRb
+where $pRb in {_, pRb~?}.
+
+%(E17)
+Jun-c_Fos-$pRb + #ERCC1 => Jun-c_Fos-#ERCC1-$pRb
+where $pRb in {_, pRb~?}.
+
+%(E17)
+_ =[Jun-c_Fos-#ERCC1]=> ERCC1.
+
+%(E17)
+_ =[pRb~?-Jun-c_Fos-#ERCC1]=> ERCC1.
+
+ 
+%(E16)
+CEBP-$pRb + #P => CEBP-#P-$pRb
+where $pRb in {_, pRb~?}.
+
+%(E16)
+_ =[CEBP-#P]=> P.
+
+%(E16)
+_ =[CEBP-pRb~?-#P]=> P.
+
+
+%    * Myc box
+
+%(M2)
+c_Myc + Max => c_Myc-Max.
+
+%(C35)
+c_Myc-Max + #cdc25A => c_Myc-Max-#cdc25A.
+
+%(C35)
+_ =[c_Myc-Max-#cdc25A]=> cdc25A.
+
+%(M1)
+c_Myc + AP2 => c_Myc-AP2.
+
+%(M1)
+pRb~$P +AP2 => pRb~$P-AP2.
+
+%(M3,4)
+AP2-$comp + #E_cadherin => AP2-#E_cadherin-$comp
+where $comp in {_, c-Myc, pRb~?}.
+
+%(M3)
+_ =[AP2-#E_cadherin]=> E_cadherin.
+
+%(M4)
+_ =[pRb~?-AP2-#E_cadherin]=> E_cadherin.
+
+%(M4)
+_ =[c_Myc-AP2-#E_cadherin]=> E_cadherin.
+
+ 
+%    * Degradation
+
+ 
+
+P130~{p1} => _.
+
+%(E10)
+E2F4 => _.
+
+%(E10)
+E2F4 =[p130~?-E2F4-DP12~?]=>_ .
+

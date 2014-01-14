@@ -1,0 +1,44 @@
+% Minimal model of the Circadian rythm
+% José M. G. Vilar, Hao Yuan Kueh, Naama Barkai, and
+% Stanislas Leibler
+% http://www.pnas.org/cgi/content/abstract/99/9/5988
+% http://www.cellerator.org/notebooks/vilar.html
+
+50*[DA] for DA => DA + MA.
+
+500*[DAp] for DAp => DAp + MA.
+
+0.01*[DR] for DR => DR + MR.
+
+% 50*[DRp] for DR => DRp + MR.
+50*[DR] for DR => DRp + MR.
+
+50*[MA] for MA => RA + MA.
+
+5*[MR] for MR => MR + R.
+
+1*[RA]*[DA] for RA+DA => DAp.
+
+2*[RA]*[R] for RA + R => C.
+
+1*[RA]*[DR] for RA + DR => DRp.
+
+1*[RA] for RA => _.
+
+1*[C] for C => R.
+
+10*[MA] for MA => _.
+
+0.5*[MR] for MR => _.
+
+0.2*[R] for R => _.
+
+50*[DAp] for DAp => RA + DA.
+
+100*[DRp] for DRp => RA + DR.
+
+present(DA,1).
+present(DR,1).
+
+absent({RA,C,DAp,DRp,MA,MR,R}).
+

@@ -1,0 +1,7 @@
+biocham
+Makefile
+*.swp
+*~
+*.o
+*.log
+*.status

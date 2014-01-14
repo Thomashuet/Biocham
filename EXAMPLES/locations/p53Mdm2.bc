@@ -1,0 +1,91 @@
+% p53/Mdm2 model
+% adapted from Ciliberto, Novak and Tyson 2005
+% http://www.landesbioscience.com/journals/cc/abstract.php?id=1548
+
+parameter(ratio,15).
+
+volume(n,1/ratio).
+
+% p53
+
+(ks53,MA(kd53p)) for _ <=> p53.
+
+MA(kf) for p53  =[Mdm2::n]=> p53~{u}.
+
+MA(kr) for p53~{u}  => p53.
+
+MA(kd53p) for p53~{u} => _.
+
+MA(kf) for p53~{u}  =[Mdm2::n]=> p53~{uu}.
+
+MA(kr) for p53~{uu}  => p53~{u}.
+
+(kd53+kd53p)*[p53~{uu}] for p53~{uu} => _.
+
+macro(p53tot,[p53]+[p53~{u}]+[p53~{uu}]).
+parameter(ks53,0.055).
+parameter(kd53p,0.0055).
+parameter(kd53,8).
+parameter(ks53,0.055).
+
+parameter(kf,8.8).
+parameter(kr,2.5).
+
+% DNA damage
+
+(kDNA*IR,MM(kdDNA*p53tot,Jdna)) for _ <=> DNAdam.
+
+parameter(IR,0).
+add_event(Time>=10,IR,1).
+add_event(Time>=20,IR,0).
+
+parameter(kDNA,0.18).
+parameter(kdDNA,0.017).
+parameter(Jdna,1).
+
+macro(ir,IR).
+
+% Mdm2 
+
+(ks2p,MA(kd2p)) for _ <=> Mdm2::c.
+ks2*p53tot^m/(Js^m+p53tot^m) for _ =[p53]=> Mdm2::c.
+
+parameter(kd2p,0.01).
+parameter(ks2,0.006).
+parameter(ks2p,0.0015).
+parameter(Js,1.2).
+parameter(m,3).
+
+(kph*[Mdm2::c]/(Jph+p53tot),MA(kdeph)) for Mdm2::c <=> Mdm2~{p}::c.
+MA(kd2p) for Mdm2~{p}::c => _.
+
+parameter(kph,0.05).
+parameter(Jph,0.01).
+parameter(kdeph,6).
+  
+(MA(ko),MA(ki)) for Mdm2::n <=> Mdm2~{p}::c.   
+
+parameter(ki,14).
+parameter(ko,0.5).
+
+kd2p_n*[Mdm2::n] for Mdm2::n => _.
+
+[Mdm2::n]*[DNAdam]*kd2pp_n/(Jdam+[DNAdam]) for Mdm2::n =[DNAdam]=> _.
+
+parameter(kd2pp,0.01).
+parameter(Jdam,0.2).
+
+macro(kd2p_n,kd2p/ratio).
+macro(kd2pp_n,kd2pp/ratio).
+
+% macro(kd2,kd2p+[DNAdam]*kd2pp/(Jdam+[DNAdam])).
+
+% initial state: steady state, without damaged dna
+
+present (p53,0.04).
+present (p53~{u},0.02).
+present (p53~{uu},0.01).
+
+present (Mdm2::n,0.33).
+present (Mdm2::c,0.12).
+present (Mdm2~{p}::c,0.01).

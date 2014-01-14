@@ -1,0 +1,8 @@
+current_directory.
+add_biocham('../small/small.bc').
+current_directory.
+add_biocham('mapk.bc').
+current_directory.
+add_biocham('../../EXAMPLES/nonexist.bc').
+add_biocham('add_biocham2_test.bc').
+current_directory.

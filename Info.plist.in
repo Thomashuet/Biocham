@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+   <dict>
+      <key>CFBundleDevelopmentRegion</key>
+      <string>English</string>
+      <key>CFBundleExecutable</key>
+      <string>JavaApplicationStub</string>
+      <key>CFBundleGetInfoString</key>
+      <string>Copyright 2003-2010, INRIA, Projet Contraintes</string>
+      <key>CFBundleIconFile</key>
+      <string>Biocham.icns</string>
+      <key>CFBundleIdentifier</key>
+      <string>fr.inria.contraintes.biocham</string>
+      <key>CFBundleInfoDictionaryVersion</key>
+      <string>@PACKAGE_VERSION@</string>
+      <key>CFBundleName</key>
+      <string>@PACKAGE_NAME@</string>
+      <key>CFBundlePackageType</key>
+      <string>APPL</string>
+      <key>CFBundleShortVersionString</key>
+      <string>@PACKAGE_SHORTVERSION@</string>
+      <key>CFBundleSignature</key>
+      <string>????</string>
+      <key>CFBundleVersion</key>
+      <string>@PACKAGE_SHORTVERSION@</string>
+      <key>CFBundleDocumentTypes</key>
+      <array>
+         <dict>
+            <key>CFBundleTypeExtensions</key>
+            <array>
+               <string>bc</string>
+            </array>
+            <key>CFBundleTypeName</key>
+            <string>Biocham File</string>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+         </dict>
+      </array>
+      <key>Java</key>
+      <dict>
+         <key>JVMVersion</key>
+         <string>1.5+</string>
+         <key>MainClass</key>
+         <string>fr.inria.contraintes.biocham.BiochamSplash</string>
+         <key>ClassPath</key>
+         <array>
+            <string>$JAVAROOT/biocham.jar</string>
+            <string>$JAVAROOT/poi-3.5-beta5-20090219.jar</string>
+            <string>$JAVAROOT/balloontip_2009-03-19.jar</string>
+            <string>$JAVAROOT/elall.jar</string>
+            <string>$JAVAROOT/elcore.jar</string>
+            <string>$JAVAROOT/freemarker.jar</string>
+            <string>$JAVAROOT/MultiSplit.jar</string>
+            <string>$JAVAROOT/swingx-0.9.7.jar</string>
+            <string>$JAVAROOT/swingx-beaninfo-0.9.7.jar</string>
+            <string>$JAVAROOT/PDFRenderer-2009_08_09.jar</string>
+         </array>   
+         <key>Arguments</key>
+         <string>$JAVAROOT/..</string>
+         <key>Properties</key>
+         <dict>
+            <key>apple.laf.useScreenMenuBar</key>
+            <string>true</string>
+            <key>com.apple.mrj.application.apple.menu.about.name</key>
+            <string>Biocham</string>
+         </dict>
+      </dict>
+      <key>NSHumanReadableCopyright</key>
+      <string>Copyright 2003-2010, INRIA, Projet Contraintes</string>
+   </dict>
+</plist>

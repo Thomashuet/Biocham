@@ -1,0 +1,71 @@
+%if we forget one rule...
+delete_rules(Cdc2 => Cdc2~{p1}).
+present(Cdc2~{p1}).
+
+
+%reachability of active MPF
+check_reachable(Cdc2-Cyclin~{p1}).
+%show the path
+why.
+
+
+%  prove the cyclicity of the activation of MPF
+check_oscil(Cdc2-Cyclin~{p1}).
+%show the path
+why.
+
+add_spec(Ei(reachable(Cdc2-Cyclin~{p1}))).
+add_spec(Ei(oscil(Cdc2-Cyclin~{p1}))).
+
+
+learn_one_addition(elementary_interaction_rules).
+
+add_rules(k8*[Cdc2] for Cdc2 => Cdc2~{p1}).
+parameter(k8,100).
+
+
+check_all_spec.
+
+% do numerical stuff
+
+hide_molecules(Cdc2).
+hide_molecules(Cdc2~{p1}).
+hide_molecules(Cdc2-Cyclin~{p1,p2}).
+hide_molecules(Cyclin~{p1}).
+hide_molecules(Cyclin).
+show_macros.
+
+parameter(k4,200).
+parameter(k6,5).
+numerical_simulation(200).
+plot.
+keep_plot.
+
+search_parameters([k4,k6],[(0,1000),(0,10)],20,
+   oscil(Cdc2-Cyclin~{p1},3) &
+      F(([Cdc2-Cyclin~{p1}] > 0.1) & F(([Cdc2-Cyclin~{p1}] < 0.005))),100).
+
+%numerical_simulation(100).
+plot.
+keep_plot.
+
+get_period_from_trace(Cyclin).
+
+search_parameters([k4,k6],[(0,1000),(0,10)],20,
+   period(Cdc2-Cyclin~{p1},33),100).
+
+%numerical_simulation(100).
+plot.
+keep_plot.
+
+%find atteignable values
+domains(F([Cdc2]=<p)).
+domains(G(YT=<p1 & YT>=p2)).
+%find oscillations extrema
+domains(F((d([Cdc2])/dt>0 & [Cdc2]>v1) & (F((d([Cdc2])/dt<0 & [Cdc2]<v2))))).
+%evaluate influence
+domains(G([Cdc2-Cyclin~{p1}]>p1 -> d([Cdc2])/dt>=0)).
+
+delete_rules(Cdc2-Cyclin~{p1,p2} =[?]=> Cdc2-Cyclin~{p1}).
+
+check_spec.

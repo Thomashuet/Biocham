@@ -1,0 +1,313 @@
+% Delta-Notch Signaling Model 
+% 4 Neighbors / cell , 6*6 Cells cij with i,j in 1..6
+% by Sakina Ayata  
+% April 2005 
+ 
+% adapted from 
+%  R. Ghosh and C. Tomlin. Lateral inhibition through Delta-Notch signaling: A piecewise affine hybrid model. in Hybrid Systems: Computation ann Control, HSCC 2001. 
+% http://cherokee.stanford.edu/~ronojoy/20340232.pdf  
+  
+% cited by   
+% A. Bockmayer and A. Courtois. Using hybrid concurrent constrait programming to model dynamic biological systems.  
+% http://www.loria.fr/publications/2002/A02-R-026/A02-R-026.ps
+
+parameter(ka,1).
+parameter(kd,1).
+
+%%% Notch protein production
+
+% two neighbors 
+
+(if [D::c12]+[D::c21] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c11.
+
+(if [D::c15]+[D::c26] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c16.
+
+(if [D::c62]+[D::c51] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c61.
+
+(if [D::c65]+[D::c56] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c66.
+
+
+% 3 neighbors
+
+(if [D::c11]+[D::c13]+[D::c22] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c12.
+ 
+(if [D::c12]+[D::c14]+[D::c23] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c13.
+ 
+(if [D::c13]+[D::c15]+[D::c24] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c14.
+ 
+(if [D::c14]+[D::c16]+[D::c25] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c15.
+ 
+
+(if [D::c61]+[D::c63]+[D::c52] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c62.
+
+(if [D::c62]+[D::c64]+[D::c53] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c63.
+
+(if [D::c63]+[D::c65]+[D::c54] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c64.
+
+(if [D::c64]+[D::c66]+[D::c55] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c65.
+
+
+
+(if [D::c11]+[D::c31]+[D::c22] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c21.
+
+(if [D::c21]+[D::c41]+[D::c32] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c31.
+
+(if [D::c31]+[D::c51]+[D::c42] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c41.
+
+(if [D::c41]+[D::c61]+[D::c52] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c51.
+
+
+(if [D::c16]+[D::c36]+[D::c25] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c26.
+
+(if [D::c26]+[D::c46]+[D::c35] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c36.
+
+(if [D::c36]+[D::c56]+[D::c45] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c46.
+
+(if [D::c46]+[D::c66]+[D::c55] < 0.2  then 0 else ka,MA(kd)) for _ <=> N::c56.
+
+% 4 neighbors
+
+(if [D::c21]+[D::c23]+[D::c12]+[D::c32] < 0.2 then 0 else ka,MA(kd)) for
+   _ <=> N::c22.
+
+(if [D::c22]+[D::c24]+[D::c13]+[D::c33] < 0.2 then 0 else ka,MA(kd)) for
+   _ <=> N::c23.
+
+(if [D::c23]+[D::c25]+[D::c14]+[D::c34] < 0.2 then 0 else ka,MA(kd)) for
+   _ <=> N::c24.
+
+(if [D::c24]+[D::c26]+[D::c15]+[D::c35] < 0.2 then 0 else ka,MA(kd)) for
+   _ <=> N::c25.
+
+
+(if [D::c31]+[D::c33]+[D::c22]+[D::c42] < 0.2 then 0 else ka,MA(kd)) for
+   _ <=> N::c32.
+
+(if [D::c32]+[D::c34]+[D::c23]+[D::c43] < 0.2 then 0 else ka,MA(kd)) for
+   _ <=> N::c33.
+
+(if [D::c33]+[D::c35]+[D::c24]+[D::c44] < 0.2 then 0 else ka,MA(kd)) for
+   _ <=> N::c34.
+
+(if [D::c34]+[D::c36]+[D::c25]+[D::c45] < 0.2 then 0 else ka,MA(kd)) for
+   _ <=> N::c35.
+
+
+(if [D::c41]+[D::c43]+[D::c32]+[D::c52] < 0.2 then 0 else ka,MA(kd)) for
+   _ <=> N::c42.
+
+(if [D::c42]+[D::c44]+[D::c33]+[D::c53] < 0.2 then 0 else ka,MA(kd)) for
+   _ <=> N::c43.
+
+(if [D::c43]+[D::c45]+[D::c34]+[D::c54] < 0.2 then 0 else ka,MA(kd)) for
+   _ <=> N::c44.
+
+(if [D::c44]+[D::c46]+[D::c35]+[D::c55] < 0.2 then 0 else ka,MA(kd)) for
+   _ <=> N::c45.
+
+
+(if [D::c51]+[D::c53]+[D::c42]+[D::c62] < 0.2 then 0 else ka,MA(kd)) for
+   _ <=> N::c52.
+
+(if [D::c52]+[D::c54]+[D::c43]+[D::c63] < 0.2 then 0 else ka,MA(kd)) for
+   _ <=> N::c53.
+
+(if [D::c53]+[D::c55]+[D::c44]+[D::c64] < 0.2 then 0 else ka,MA(kd)) for
+   _ <=> N::c54.
+
+(if [D::c54]+[D::c56]+[D::c45]+[D::c65] < 0.2 then 0 else ka,MA(kd)) for
+   _ <=> N::c55.
+
+
+%%% Delta protein production
+
+(if [N::c11] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c11.
+
+(if [N::c12] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c12.
+
+(if [N::c13] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c13.
+
+(if [N::c14] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c14.
+
+(if [N::c15] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c15.
+
+(if [N::c16] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c16.
+
+(if [N::c21] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c21.
+
+(if [N::c22] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c22.
+
+(if [N::c23] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c23.
+
+(if [N::c24] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c24.
+
+(if [N::c25] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c25.
+
+(if [N::c26] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c26.
+
+(if [N::c31] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c31.
+
+(if [N::c32] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c32.
+
+(if [N::c33] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c33.
+
+(if [N::c34] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c34.
+
+(if [N::c35] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c35.
+
+(if [N::c36] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c36.
+
+(if [N::c41] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c41.
+
+(if [N::c42] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c42.
+
+(if [N::c43] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c43.
+
+(if [N::c44] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c44.
+
+(if [N::c45] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c45.
+
+(if [N::c46] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c46.
+
+(if [N::c51] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c51.
+
+(if [N::c52] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c52.
+
+(if [N::c53] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c53.
+
+(if [N::c54] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c54.
+
+(if [N::c55] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c55.
+
+(if [N::c56] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c56.
+
+(if [N::c61] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c61.
+
+(if [N::c62] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c62.
+
+(if [N::c63] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c63.
+
+(if [N::c64] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c64.
+
+(if [N::c65] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c65.
+
+(if [N::c66] > 0.5 then 0 else ka,MA(kd)) for _ <=> D::c66.
+
+
+%%% Initial state
+
+% stochastic distribution:
+%   +/- 30% about the value 1 in the first article
+%   normal distribution with unity mean and a variance of 0.05 in the second article
+% here we choose the second option
+
+present(D::c11,1).
+present(N::c11,0.91).
+
+present(D::c12,1.02).
+present(N::c12,1).
+
+present(D::c13,1).
+present(N::c13,0.95).
+
+present(D::c14,1).
+present(N::c14,1).
+
+present(D::c15,1.06).
+present(N::c15,1).
+
+present(D::c16,1.06).
+present(N::c16,1).
+
+present(D::c21,0.97).
+present(N::c21,1).
+
+present(D::c22,1.04).
+present(N::c22,1.01).
+
+present(D::c23,1.02).
+present(N::c23,0.95).
+
+present(D::c24,1).
+present(N::c24,1.03).
+
+present(D::c25,1).
+present(N::c25,1).
+
+present(D::c26,1.06).
+present(N::c26,1.09).
+
+present(D::c31,1.02).
+present(N::c31,1).
+
+present(D::c32,0.99).
+present(N::c32,1.01).
+
+present(D::c33,1).
+present(N::c33,0.98).
+
+present(D::c34,1).
+present(N::c34,0.96).
+
+present(D::c35,1.12).
+present(N::c35,1.06).
+
+present(D::c36,1.12).
+present(N::c36,1.06).
+
+present(D::c41,0.94).
+present(N::c41,0.99).
+
+present(D::c42,1.03).
+present(N::c42,1.01).
+
+present(D::c43,1).
+present(N::c43,1.02).
+
+present(D::c44,0.91).
+present(N::c44,0.99).
+
+present(D::c45,1.1).
+present(N::c45,0.99).
+
+present(D::c46,1.1).
+present(N::c46,0.99).
+
+present(D::c51,0.94).
+present(N::c51,0.99).
+
+present(D::c52,1.03).
+present(N::c52,1.01).
+
+present(D::c53,1).
+present(N::c53,1.02).
+
+present(D::c54,0.91).
+present(N::c54,0.99).
+
+present(D::c55,1.11).
+present(N::c55,0.99).
+
+present(D::c56,1.0).
+present(N::c56,0.99).
+
+present(D::c61,0.94).
+present(N::c61,0.99).
+
+present(D::c62,1.03).
+present(N::c62,1.01).
+
+present(D::c63,1).
+present(N::c63,1.02).
+
+present(D::c64,0.91).
+present(N::c64,0.93).
+
+present(D::c65,0.87).
+present(N::c65,0.99).
+
+present(D::c66,1.1).
+present(N::c66,0.99).
+
+%%% Slow (72 variables)!
+% numerical_simulation(10)

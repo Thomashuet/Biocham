@@ -1,0 +1,6 @@
+0.46*[NO2]*[NO2] for 2*NO2 => 2*NO + O2.
+
+present(NO2,0.01).
+
+absent(NO).
+absent(O2).

@@ -1,0 +1,7 @@
+biocham_version('@PACKAGE_VERSION@').
+@GPLC_MSORT@msort(L) :- sort0(L).
+@GPLC_MSORT@msort(L1, L2) :- sort0(L1, L2).
+%@GPLC_PATCHED@spawn_redirect(_A, _B, _C, _D, _E, _F) :- true.
+handle_ctrl_c :-
+@GPLC_CTRLC@   '$call_c'('Pl_Set_Ctrl_C_Handler_0'),
+   true.

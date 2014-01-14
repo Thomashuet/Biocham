@@ -1,0 +1,16 @@
+% Parameters
+parameter(N,1).
+% Macros
+macro(TOT,N*[Y]+(1-N)*[X]).
+
+% Reaction rules
+N for _=>X.
+1-N for Y=>_.
+
+% Initial state
+present(X,1).
+present(Y,1).
+
+add_event([X]>=2.0,N,1-N).
+
+% show_macros.

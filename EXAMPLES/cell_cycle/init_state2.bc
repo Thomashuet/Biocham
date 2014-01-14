@@ -1,0 +1,58 @@
+% etat initial:
+
+
+present({cdk1}).
+
+absent({
+cdk1-cycA,
+cdk1~{p1}-cycA,
+cdk1~{p2}-cycA,
+cdk1~{p3}-cycA,
+cdk1~{p2,p1,p3}-cycA,
+cdk1~{p2,p3}-cycA,
+cdk1~{p1,p2}-cycA,
+cdk1~{p1,p3}-cycA,
+cycA,
+cycE,
+cycE~{p1},
+cdk2~{p2}-cycA,
+cdk2~{p1}-cycA,
+cdk2~{p2,p1}-cycA,
+cdk2-cycA,
+cdk2-cycE~{p1},
+cdk2-cycE,
+cdk2~{p1}-cycE~{p1},
+cdk2~{p1}-cycE,
+Raf1-pRb-E2F4-DP12,
+SL1~{p1},	
+cdc25C~{p1},
+PCNA-cycD~{p1},
+
+
+cdk1-cycB,
+cdk1~{p1}-cycB,
+cdk1~{p2}-cycB,
+cdk1~{p3}-cycB,
+cdk1~{p2,p1,p3}-cycB,
+cdk1~{p2,p3}-cycB,
+cdk1~{p1,p2}-cycB,
+cdk1~{p1,p3}-cycB,
+cdk1~{p3}
+}).
+
+% equivalent to:
+% absent({
+% cdk1~?-cycA,
+% cycA,
+% cycE,
+% cycE~{p1},
+% cdk2~?-cycA,
+% cdk2-cycE~{p1},
+% cdk2-cycE,
+% cdk2~{p1}-cycE~{p1},
+% cdk2~{p1}-cycE,
+% Raf1-pRb-E2F4-DP12,
+% SL1~{p1},   
+% cdc25C~{p1},
+% PCNA-cycD~{p1},
+% cdk1~?-cycB}).

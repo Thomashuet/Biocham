@@ -1,0 +1,11 @@
+% fss_params(1,100,0.01,0.1,10,0).
+
+search_parameters_fss(
+[k4,k6],
+[(0,1000),(0,1000)],
+F([Cdc2-Cyclin~{p1}]> x1  & F([Cdc2-Cyclin~{p1}]< x2  
+   & F([Cdc2-Cyclin~{p1}]> x1  & F([Cdc2-Cyclin~{p1}]< x2  ))   )) 
+& x1-x2> a ,  
+[a],
+[0.3],
+150).

@@ -1,0 +1,37 @@
+% BIOCHAM model file
+
+% declarations
+
+
+% events
+
+
+% LTL specification
+
+% Parameters
+
+
+
+
+% Macros
+
+
+
+
+% Conservation laws
+
+% Reaction rules
+MA(k1) for S+E=>C.
+MA(km1) for C=>S+E.
+MA(k2) for C=>P+E.
+
+% Initial state
+
+
+
+
+
+% Spec
+
+
+

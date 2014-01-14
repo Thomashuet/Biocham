@@ -1,0 +1,50 @@
+/* BIOCHAM system http://contraintes.inria.fr/BIOCHAM/
+ * Copyright 2003-2008, INRIA, Projet Contraintes
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * BiochamApp.java
+ * by Sylvain Soliman */
+
+package fr.inria.contraintes.biocham;
+
+import com.apple.eawt.*;
+
+public class BiochamApp extends Application {
+   BiochamGUI gui;
+   
+   BiochamApp(BiochamGUI bcg) {
+      gui = bcg;
+      addApplicationListener(
+            new ApplicationAdapter() {
+               public void handleAbout(ApplicationEvent e) {
+                  e.setHandled(true);
+                  gui.about();
+               }
+               public void handleQuit(ApplicationEvent e) {
+                  gui.quit();
+               }
+               public void handleOpenFile(ApplicationEvent e) {
+                  String[] args = new String[gui.arguments.length+1];
+                  for (int i=0;i<gui.arguments.length;++i)
+                     args[i] = gui.arguments[i];
+                  args[gui.arguments.length]=e.getFilename();
+                  gui.arguments = args;
+               }
+            }
+            );
+   }
+}
+

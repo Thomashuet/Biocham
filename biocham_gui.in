@@ -1,0 +1,28 @@
+#!/bin/bash
+debug_mode=""
+
+case $1 in
+   --legacy)
+      echo "*** LEGACY mode ***"
+      jar=biocham_legacy.jar
+      shift;;
+   --debug)
+      debug_mode="--debug"
+      jar=biocham.jar;;
+   *)
+      jar=biocham.jar;;
+esac
+file=$0
+readlink=`which readlink`
+
+# dereference symbolic links
+if [ -L $file -a -x $readlink ] ; then
+   file=`$readlink -f $file`
+fi
+dir=`dirname $file`
+
+if [ -f $dir/gui/$jar ] ; then
+   java -jar $dir/gui/$jar $debug_mode $dir $*
+else
+   java -jar @JARDIR@/$jar $debug_mode @datadir@ $*
+fi

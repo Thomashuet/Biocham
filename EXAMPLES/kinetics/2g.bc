@@ -1,0 +1,17 @@
+%%%% A simple two-gene example
+%%%% as example of conditional functions.
+
+parameter(k1,0.01).
+parameter(k2,0.02).
+
+macro(v1,k1-(k2*[X])).
+macro(v2,-(k2*[X])).
+
+k1*[X] for X => X + Y.
+
+if [Y] =< 2*[X] then v1
+   else v2
+	for Y => X + Y.
+
+present(X,0).
+present(Y,0).

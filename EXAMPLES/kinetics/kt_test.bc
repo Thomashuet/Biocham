@@ -1,0 +1,7 @@
+% Plot RA, X, and Y for a 100 sec maximum time as below
+
+numerical_simulation(100).
+
+plot.
+
+%sleep(5).
